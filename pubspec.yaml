@@ -69,3 +69,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+  fonts:
+    - family: Gotham
+      fonts:
+        - asset: packages/pandashop/fonts/Gotham-Book.otf
+        - asset: packages/pandashop/fonts/Gotham-Medium.otf
+        - asset: packages/pandashop/fonts/Gotham-Bold.otf
+          

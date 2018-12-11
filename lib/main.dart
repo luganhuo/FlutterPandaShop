@@ -9,6 +9,12 @@ void main() {
   runApp(SampleApp());
 }
 
+const TextStyle FontGothamStyle = const TextStyle(
+  fontFamily: 'Gotham',
+  fontSize: 14,
+  fontWeight: FontWeight.w300,
+);
+
 class SampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -75,8 +81,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
   Widget getRow(int i) {
     return Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Text("Row ${widgets[i]["title"]}"));
+      padding: EdgeInsets.all(10.0),
+      child: Text("Row ${widgets[i]["title"]}", style: FontGothamStyle),
+    );
   }
 
   loadData() async {
