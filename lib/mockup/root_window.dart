@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pandashop/mockup/component/navigation_icon_view.dart';
-import 'package:pandashop/mockup/constants/constant_colors.dart';
-import 'package:pandashop/mockup/modules/widget_home.dart';
-import 'package:pandashop/mockup/translations.dart';
-import 'package:pandashop/mockup/utils/image_in_assets.dart';
+import 'package:pandashop/mockup/modules/me/window_me.dart';
+
+import '../mockup/utils/image_in_assets.dart';
+import 'component/tab_bar_icon_item.dart';
+import 'modules/window_brands.dart';
+import 'modules/window_category.dart';
+import 'modules/window_home.dart';
+import 'modules/window_wishlist.dart';
+import 'translations.dart';
 
 class RootWindow extends StatefulWidget {
   @override
@@ -15,47 +19,38 @@ class RootWindow extends StatefulWidget {
 class _RootWindowState extends State<RootWindow> {
   static const nativePlatform = const MethodChannel("com.farfetch.china.pandashop");
 
-  PageController _pageController;
-  List<NavigationIconView> _navigationViews;
-  List<Widget> _pages;
+  List<TabBarIconItem> _navigationViews;
+  List<Widget> _pages = List<Widget>();
   int _currentSelectedTab = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _currentSelectedTab);
-    _pages = [
-      HomeWidget(),
-      Container(color: Colors.green,),
-      Container(color: Colors.blue,),
-      Container(color: Colors.purple,),
-      Container(color: Colors.yellow,),
-    ];
+    _pages..add(WindowHome())..add(CategoryWindow())..add(BrandsWindow())..add(WishListWindow())..add(MeWindow());
   }
 
-  List<NavigationIconView> _getNavigationBarItems(BuildContext context) {
-    print("_getNavigationBarItems");
-    _navigationViews = <NavigationIconView>[
-      NavigationIconView(
-          title: Translations.of(context).text("首页"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/home_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/home_onstate_icon.png").assetImage())),
-      NavigationIconView(
-          title: Translations.of(context).text("商品类别"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/shop_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/shop_onstate_icon.png").assetImage())),
-      NavigationIconView(
-          title: Translations.of(context).text("品牌"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/designers_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/designers_onstate_icon.png").assetImage())),
-      NavigationIconView(
-          title: Translations.of(context).text("愿望单"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/icon_wishlist_off.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/icon_wishlist.png").assetImage())),
-      NavigationIconView(
-          title: Translations.of(context).text("我的帐户"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/me_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/TabBarItem/Default/me_onstate_icon.png").assetImage())),
+  List<TabBarIconItem> _getNavigationBarItems(BuildContext context) {
+    _navigationViews = <TabBarIconItem>[
+      TabBarIconItem(
+          title: Translations.of(context).text("tabbarItemHomeTitle"),
+          icon: ImageIcon(ImageInAssets(name: "assets/images/home_offstate_icon.png").assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/home_onstate_icon.png").assetImage())),
+      TabBarIconItem(
+          title: Translations.of(context).text("tabbarItemShopTitle"),
+          icon: ImageIcon(ImageInAssets(name: "assets/images/shop_offstate_icon.png").assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/shop_onstate_icon.png").assetImage())),
+      TabBarIconItem(
+          title: Translations.of(context).text("tabbarItemDesignersTitle"),
+          icon: ImageIcon(ImageInAssets(name: "assets/images/designers_offstate_icon.png").assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/designers_onstate_icon.png").assetImage())),
+      TabBarIconItem(
+          title: Translations.of(context).text("tabbarItemWishlistTitle"),
+          icon: ImageIcon(ImageInAssets(name: "assets/images/wishlist_offstate_icon.png").assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/wishlist_onstate_icon.png").assetImage())),
+      TabBarIconItem(
+          title: Translations.of(context).text("tabbarItemMeTitle"),
+          icon: ImageIcon(ImageInAssets(name: "assets/images/me_offstate_icon.png").assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/me_onstate_icon.png").assetImage()))
     ];
     return _navigationViews;
   }
@@ -63,7 +58,7 @@ class _RootWindowState extends State<RootWindow> {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBar navigationBar = BottomNavigationBar(
-      items: _getNavigationBarItems(context).map((NavigationIconView naviIconView) => naviIconView.item).toList(),
+      items: _getNavigationBarItems(context).map((TabBarIconItem naviIconView) => naviIconView.item).toList(),
       currentIndex: _currentSelectedTab,
       type: BottomNavigationBarType.fixed,
       fixedColor: Colors.black,
@@ -71,36 +66,45 @@ class _RootWindowState extends State<RootWindow> {
         print('\n${_navigationViews[index].item.title}');
         setState(() {
           _currentSelectedTab = index;
-          _pageController.animateToPage(_currentSelectedTab, duration: Duration(milliseconds: 1), curve: Curves.linear);
         });
       },
     );
 
+    List<Widget> allOffstagePages = [];
+    var idx = 0;
+    for (var eachPage in _pages) {
+      allOffstagePages.add(
+        Offstage(
+          offstage: _currentSelectedTab != idx,
+          child: TickerMode(
+            enabled: _currentSelectedTab == idx,
+            child: eachPage,
+          ),
+        ),
+      );
+      idx++;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Farfetch',style: TextStyle(color: Colors.black),),
+        title: Text(
+          'Farfetch',
+        ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search,color: Colors.black,), 
-            onPressed: (){ print('search'); },
+            icon: Icon(
+              Icons.search,
+            ),
+            onPressed: () {
+              print('search');
+            },
           )
         ],
       ),
-      body: PageView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return _pages[index];
-        },
-        controller: _pageController,
-        itemCount: _pages.length,
-        onPageChanged: (int index) {
-          setState(() {
-            _currentSelectedTab = index;
-          });
-        },
+      body: Stack(
+        children: allOffstagePages,
       ),
       bottomNavigationBar: navigationBar,
     );
   }
 }
-
-

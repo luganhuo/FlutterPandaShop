@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/root_window.dart';
-import 'package:pandashop/mockup/translations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'root_window.dart';
+import 'translations.dart';
+import 'core/disable_splash_effect.dart';
 
 class PandaApp extends StatelessWidget {
   @override
@@ -23,7 +24,7 @@ class PandaApp extends StatelessWidget {
         const Locale('en', 'US'),
       ],
       theme: ThemeData.light().copyWith(
-        primaryColor: Colors.white
+        splashFactory: const NoSplashFactory(),
       ),
     );
   }

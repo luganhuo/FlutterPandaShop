@@ -1,0 +1,13 @@
+name: xcassets_migrater
+
+description: the command line tool for migrate Xcode assets into yaml form for Flutter
+
+dependencies:
+  args: ^1.5.1
+  async: ^2.0.8
+  json_annotation: ^2.0.0
+  path: ^1.6.2
+  
+dev_dependencies:
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.1

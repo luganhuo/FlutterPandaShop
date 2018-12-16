@@ -1,7 +1,10 @@
 {
-    "首页": "Home",
-    "商品类别": "Categories",
-    "品牌": "Brands",
-    "愿望单": "Wishlist",
-    "我的帐户": "Me"
+  "首页": "首页",
+  "商品类别": "商品类别",
+  "品牌": "品牌",
+  "愿望单": "愿望单",
+  "我的帐户": "我的帐户",
+  "loginTableViewCellDescription": "您可以从您任何电子装置查看您的购物袋与愿望单",
+  "registerViewRegisterButton": "创建账号",
+  "loginViewSignInButton": "登录"
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Colours {
-  static const Color COLOR_WHITE = Color(0xffffffff);
-}
+  static Color get white => _colorWhite(255);
+  static Color get white17 => _colorWhite(17);
+  static Color get white34 => _colorWhite(34);
+  static Color get white216 => _colorWhite(216);
+  static Color get white246 => _colorWhite(246);
 
-class Fonts {
-  static const TextStyle FontGothamStyle = const TextStyle(
-    fontFamily: 'Gotham',
-    fontSize: 14,
-    fontWeight: FontWeight.w300,
-  );
+  static Color _colorWhite(val) => Color.fromRGBO(val, val, val, 1.0);
 }
