@@ -48,6 +48,7 @@ class WidgetMeLoginCell extends StatelessWidget {
                     ),
                     onPressed: this.onRegister,
                     color: Colours.white216,
+                    highlightColor: Colours.white246,
                   ),
                 ),
                 SizedBox(
@@ -58,14 +59,15 @@ class WidgetMeLoginCell extends StatelessWidget {
                       shape: BorderRadiusDef.cornerRadius4,
                       child: Text(
                         Translations.of(context).text("loginViewSignInButton"),
-                        // style: TextStyle(color: Colours.COLOR_WHITE),
                         style: PandaTextStyle.sfui.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Colours.white,
                         ),
                       ),
                       onPressed: this.onSignIn,
-                      color: Colours.white34),
+                      color: Colours.white34,
+                      highlightColor: Colours.white136,
+                    ),
                 ),
               ],
             ),

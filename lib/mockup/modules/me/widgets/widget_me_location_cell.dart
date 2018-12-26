@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/image_in_assets.dart';
+import '../../../constants/constant_images.dart';
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_fonts.dart';
 import '../../../constants/constant_spacing.dart';
@@ -30,7 +32,11 @@ class WidgetMeLocationCell extends StatelessWidget {
             SizedBox(
               height: Spacing.s,
             ),
-            WidgetCountryLocation(),
+            WidgetCountryLocation(
+              icon: ImageInAssets(name: Images.flag_china).image(), 
+              title: "hello world", 
+              onPressed: () => print("WidgetCountryLocation pressed"),
+            ),
             SizedBox(
               height: Spacing.s,
             ),

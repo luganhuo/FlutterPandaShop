@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/utils/image_in_assets.dart';
 
 import '../../../constants/constant_colors.dart';
 
@@ -25,13 +24,13 @@ class WidgetCountryLocation extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ImageInAssets(name: "assets/images/flag_china.png").image(),
+                this.icon,
                 SizedBox(
                   width: 19,
                 ),
                 Expanded(
                   child: Container(
-                    child: Text("hello world"),
+                    child: Text(this.title),
                   ),
                 ),
                 Icon(

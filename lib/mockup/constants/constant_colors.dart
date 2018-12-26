@@ -4,6 +4,8 @@ class Colours {
   static Color get white => _colorWhite(255);
   static Color get white17 => _colorWhite(17);
   static Color get white34 => _colorWhite(34);
+  static Color get white68 => _colorWhite(68);
+  static Color get white136 => _colorWhite(136);
   static Color get white216 => _colorWhite(216);
   static Color get white246 => _colorWhite(246);
 

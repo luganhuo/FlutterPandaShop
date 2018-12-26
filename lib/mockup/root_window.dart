@@ -10,6 +10,7 @@ import 'modules/window_category.dart';
 import 'modules/window_home.dart';
 import 'modules/window_wishlist.dart';
 import 'translations.dart';
+import 'constants/constant_images.dart';
 
 class RootWindow extends StatefulWidget {
   @override
@@ -33,24 +34,24 @@ class _RootWindowState extends State<RootWindow> {
     _navigationViews = <TabBarIconItem>[
       TabBarIconItem(
           title: Translations.of(context).text("tabbarItemHomeTitle"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/home_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/home_onstate_icon.png").assetImage())),
+          icon: ImageIcon(ImageInAssets(name: Images.home_offstate_icon).assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: Images.home_onstate_icon).assetImage())),
       TabBarIconItem(
           title: Translations.of(context).text("tabbarItemShopTitle"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/shop_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/shop_onstate_icon.png").assetImage())),
+          icon: ImageIcon(ImageInAssets(name: Images.shop_offstate_icon).assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: Images.shop_onstate_icon).assetImage())),
       TabBarIconItem(
           title: Translations.of(context).text("tabbarItemDesignersTitle"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/designers_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/designers_onstate_icon.png").assetImage())),
+          icon: ImageIcon(ImageInAssets(name: Images.designers_offstate_icon).assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: Images.designers_onstate_icon).assetImage())),
       TabBarIconItem(
           title: Translations.of(context).text("tabbarItemWishlistTitle"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/wishlist_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/wishlist_onstate_icon.png").assetImage())),
+          icon: ImageIcon(ImageInAssets(name: Images.wishlist_offstate_icon).assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: Images.wishlist_onstate_icon).assetImage())),
       TabBarIconItem(
           title: Translations.of(context).text("tabbarItemMeTitle"),
-          icon: ImageIcon(ImageInAssets(name: "assets/images/me_offstate_icon.png").assetImage()),
-          activeIcon: ImageIcon(ImageInAssets(name: "assets/images/me_onstate_icon.png").assetImage()))
+          icon: ImageIcon(ImageInAssets(name: Images.me_offstate_icon).assetImage()),
+          activeIcon: ImageIcon(ImageInAssets(name: Images.me_onstate_icon).assetImage()))
     ];
     return _navigationViews;
   }

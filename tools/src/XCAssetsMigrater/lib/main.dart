@@ -1,12 +1,13 @@
-import 'dart:convert';
 import "dart:io";
+import 'dart:convert';
 import 'package:path/path.dart';
 import 'package:args/args.dart';
 import 'package:async/async.dart';
-import 'package:xcassets_migrater/image_set_model.dart';
-import './image_set_content_model.dart';
 
-typedef FilterCallback = bool Function(String word);
+import './image_set_content_model_helper.dart';
+import './image_set_content_model.dart';
+import './directory_helper.dart';
+import './variable_helper.dart';
 
 class CommandLineModel {
   String input;
@@ -17,8 +18,13 @@ class CommandLineModel {
       {this.input, this.output, this.assetPrefix, this.classSrcFile});
 }
 
+void printWarning() {
+  print("============================================================================\n" +
+          "前方ハイエナ-ジの!前方ハイエナ-ジの!前方ハイエナ-ジの!前方ハイエナ-ジの!\n" +
+        "============================================================================\n");
+}
+
 void main(List<String> argv) {
-  print(argv);
 
   var cmdParser = ArgParser();
   cmdParser
@@ -27,15 +33,14 @@ void main(List<String> argv) {
     ..addOption('asset-prefix', abbr: 'p', defaultsTo: "assets/")
     ..addOption('source', abbr: 's', defaultsTo: "constant_images.dart");
 
-  List<String> yamlAssetIDList = [];
-  // List<String> constSrcList = [];
-
   final result = cmdParser.parse(argv);
   final cmdline = CommandLineModel(
       input: result['input'],
       output: result['output'],
       assetPrefix: result['asset-prefix'],
       classSrcFile: result['source']);
+
+  printWarning();
 
   if (cmdline.output.endsWith("/") == true) {
     cmdline.output =
@@ -53,14 +58,26 @@ void main(List<String> argv) {
     constantSrcFile.createSync(recursive: true);
   }
 
-  final List<String> allImagesetPaths = _scanDirectory(
+  final List<String> allImagesetPaths = scanDirectory(
       cmdline.input,
       (path) => (false == FileSystemEntity.isFileSync(path) &&
           path.endsWith('.imageset')));
 
   FutureGroup fg = FutureGroup();
+  StringBuffer yamlStrBuf = StringBuffer();
   StringBuffer outSrcStrBuf = StringBuffer();
 
+  outSrcStrBuf.write(
+    "import 'dart:core';\n" 
+    + "\n" 
+    + "class Images {\n"
+  );
+  
+  final int totalImagesCount = allImagesetPaths.length;
+  var idx = 1;
+  
+  print('There are ${allImagesetPaths.length} images in Xcode image assets.');
+  
   for (var each in allImagesetPaths) {
     final List<String> eachPathComponents = each.split("/");
     final String imageAssetName =
@@ -76,7 +93,8 @@ void main(List<String> argv) {
         .then((dynamic json) =>
             ImageSetContentModel.fromJson(json as Map<String, dynamic>))
         .then((dynamic isc) {
-      ImageSetContentModel imageSetContent = _checkImageIsNull(isc as ImageSetContentModel);
+      ImageSetContentModel imageSetContent =
+          checkImageIsNull(isc as ImageSetContentModel);
 
       for (var eachImage in imageSetContent.images) {
         if (eachImage.filename != null && eachImage.filename.length > 0) {
@@ -102,46 +120,27 @@ void main(List<String> argv) {
         }
       }
       // TASK: asset id in yaml for flutter.
-      yamlAssetIDList.add(normalize("${cmdline.assetPrefix}/${imageAssetName}${extName}"));
-      outSrcStrBuf.write("  static String get ${imageAssetName} => \"${imageAssetName}\";\n");
-      print('Process.... ${imageAssetName}');
+      yamlStrBuf.write(normalize("- ${cmdline.assetPrefix}/${imageAssetName}${extName}\n"));
+      outSrcStrBuf.write("  static String get ${normalizeVariableName(imageAssetName)} => \"${cmdline.assetPrefix}/${imageAssetName}${extName}\";\n");
+  
+      print('[${idx}/${totalImagesCount}] Process ... ${imageAssetName}');
+      idx++;
     }));
   }
 
   fg.future
-    .then((List<dynamic> completer) => yamlAssetFile.writeAsString(yamlAssetIDList.join("\n")))
-    .then((dynamic any) => print("YAML file - DONE?"))
-    .then((any) => constantSrcFile.writeAsString(outSrcStrBuf.toString()))
-    .then((dynamic any) => print("Constant source file - DONE?"));
-  
+      .then((List<dynamic> completer) => outSrcStrBuf.write("}\n"))
+      .then((dynamic any) => yamlAssetFile.writeAsString(yamlStrBuf.toString()))
+      .then((dynamic any) => print("YAML file - DONE?"))
+      .then((any) => constantSrcFile.writeAsString(outSrcStrBuf.toString()))
+      .then((dynamic any) => print("Constant source file - DONE?"));
+
   fg.close();
 
   print("Waiting...");
 }
 
-List<String> _scanDirectory(String base, FilterCallback filter) {
-  List<String> result = List<String>();
-  try {
-    var dir = new Directory(base);
-    List<FileSystemEntity> files = dir.listSync();
 
-    for (final eachFile in files) {
-      final curPath = eachFile.path;
-
-      if (filter(curPath)) {
-        result.add(curPath);
-      }
-
-      if (false == FileSystemEntity.isFileSync(curPath)) {
-        result.addAll(_scanDirectory(curPath, filter));
-      }
-    }
-  } catch (e) {
-    print('Error: $e');
-  }
-
-  return result;
-}
 
 void _copy(String source, String destination) {
   final File fileSource = File(source);
@@ -159,48 +158,3 @@ void _copy(String source, String destination) {
   return;
 }
 
-ImageSetContentModel _checkImageIsNull(ImageSetContentModel iscm) {
-  String _1x = "";
-  String _2x = "";
-  String _3x = "";
-
-  for (var each in iscm.images) {
-    if (each.scale == '1x') {
-      _1x = each.filename != null ? each.filename.trim() : "";
-    } else if (each.scale == '2x') {
-      _2x = each.filename != null ? each.filename.trim() : "";
-    } else if (each.scale == '3x') {
-      _3x = each.filename != null ? each.filename.trim() : "";
-    }
-  }
-
-  final bool a = _1x.length ^ 0 != 0;
-  final bool b = _2x.length ^ 0 != 0;
-  final bool c = _3x.length ^ 0 != 0;
-
-  if (a && b && c) {
-    return iscm;
-  } else if (a && b) {
-    _3x = _2x;
-  } else if (b && c) {
-    _1x = _2x;
-  } else if (a && c) {
-    _2x = _3x;
-  } else if (a) {
-    _2x = _3x = _1x;
-  } else if (b) {
-    _1x = _3x = _2x;
-  } else if (c) {
-    _1x = _2x = _3x;
-  } else {
-    return ImageSetContentModel(images: null, info: null);
-  }
-
-  ImageSetContentModel result = ImageSetContentModel(images: [
-    ImageSetModel(filename: _1x, idiom: "universal", scale: "1x"),
-    ImageSetModel(filename: _2x, idiom: "universal", scale: "2x"),
-    ImageSetModel(filename: _3x, idiom: "universal", scale: "3x"),
-  ], info: iscm.info);
-
-  return result;
-}
