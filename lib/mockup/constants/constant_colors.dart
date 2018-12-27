@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Colours {
+  static Color get clear => Color.fromRGBO(255, 255, 255, 0.0);
+  static Color get black => _colorWhite(0);
   static Color get white => _colorWhite(255);
   static Color get white17 => _colorWhite(17);
   static Color get white34 => _colorWhite(34);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constant_border_radius.dart';
+import '../../../component/button_factory.dart';
 import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_fonts.dart';
+import '../../../constants/constant_define.dart';
 import '../../../constants/constant_spacing.dart';
 import '../../../translations.dart';
 
@@ -40,34 +40,17 @@ class WidgetMeLoginCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
-                  child: FlatButton(
-                    shape: BorderRadiusDef.cornerRadius4,
-                    child: Text(
-                      Translations.of(context).text("registerViewRegisterButton"),
-                      style: PandaTextStyle.gotham.copyWith(color: Colours.white34),
-                    ),
-                    onPressed: this.onRegister,
-                    color: Colours.white216,
-                    highlightColor: Colours.white246,
+                  child: Container(
+                    child: ButtonFactory.secondaryButton(context, Translations.of(context).text("registerViewRegisterButton"), this.onRegister),
+                    height: Defines.ButtonHeightNormal,
                   ),
                 ),
-                SizedBox(
-                  width: Spacing.s,
-                ),
+                SizedBox(width: Spacing.s),
                 Expanded(
-                  child: FlatButton(
-                      shape: BorderRadiusDef.cornerRadius4,
-                      child: Text(
-                        Translations.of(context).text("loginViewSignInButton"),
-                        style: PandaTextStyle.sfui.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: Colours.white,
-                        ),
-                      ),
-                      onPressed: this.onSignIn,
-                      color: Colours.white34,
-                      highlightColor: Colours.white136,
-                    ),
+                  child: Container(
+                    child: ButtonFactory.primaryButton(context, Translations.of(context).text("loginViewSignInButton"), this.onSignIn),
+                    height: Defines.ButtonHeightNormal,
+                  ),
                 ),
               ],
             ),

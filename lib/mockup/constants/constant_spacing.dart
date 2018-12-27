@@ -4,4 +4,5 @@ class Spacing {
   static double get xs => 6.0;
   static double get xxs => 4.0;
   static double get xxxs => 2.0;
+  static double get xxxxs => 1.0;
 }

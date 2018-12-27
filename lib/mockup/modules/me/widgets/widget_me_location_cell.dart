@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/image_in_assets.dart';
-import '../../../constants/constant_images.dart';
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_fonts.dart';
+import '../../../constants/constant_images.dart';
 import '../../../constants/constant_spacing.dart';
-import '../../../modules/me/components/component_country_cell.dart';
+import '../../../modules/me/components/component_data_selector.dart';
+import '../../../modules/me/components/component_section_header.dart';
 import '../../../translations.dart';
+import '../../../utils/image_in_assets.dart';
 
 class WidgetMeLocationCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(Spacing.m, Spacing.m, Spacing.m, Spacing.s),
-      height: 183,
+      padding: EdgeInsets.fromLTRB(Spacing.m, Spacing.m, Spacing.m, Spacing.m),
       width: MediaQuery.of(context).size.width,
       color: Colours.white,
       child: Material(
@@ -22,32 +22,21 @@ class WidgetMeLocationCell extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
+            SectionHeader(
+              title: Translations.of(context).text("myLocation"),
               height: 28,
-              child: Text(
-                Translations.of(context).text("myLocation"),
-                style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w700, fontSize: 18),
-              ),
             ),
-            SizedBox(
-              height: Spacing.s,
-            ),
-            WidgetCountryLocation(
-              icon: ImageInAssets(name: Images.flag_china).image(), 
-              title: "hello world", 
+            SizedBox(height: Spacing.s),
+            DataSelector(
+              icon: ImageInAssets(name: Images.flag_china).image(),
+              title: "hello world",
               onPressed: () => print("WidgetCountryLocation pressed"),
             ),
-            SizedBox(
-              height: Spacing.s,
+            SizedBox(height: Spacing.s),
+            Text(
+              Translations.of(context).text("myLocationFooter"),
+              style: PandaTextStyle.polaris.copyWith(fontSize: 12, fontWeight: FontWeight.w300),
             ),
-            Expanded(
-              child: Container(
-                child: Text(
-                  Translations.of(context).text("myLocationFooter"),
-                  style: PandaTextStyle.polaris.copyWith(fontSize: 12, fontWeight: FontWeight.w300),
-                ),
-              ),
-            )
           ],
         ),
       ),

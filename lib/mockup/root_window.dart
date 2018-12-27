@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pandashop/mockup/modules/me/window_me.dart';
+import 'package:pandashop/mockup/constants/constant_fonts.dart';
 
 import '../mockup/utils/image_in_assets.dart';
 import 'component/tab_bar_icon_item.dart';
-import 'modules/window_brands.dart';
-import 'modules/window_category.dart';
-import 'modules/window_home.dart';
-import 'modules/window_wishlist.dart';
-import 'translations.dart';
 import 'constants/constant_images.dart';
+import 'modules/brands/window_brands.dart';
+import 'modules/category/window_category.dart';
+import 'modules/home/window_home.dart';
+import 'modules/me/window_me.dart';
+import 'modules/wishlist/window_wishlist.dart';
+import 'translations.dart';
 
 class RootWindow extends StatefulWidget {
   @override
@@ -90,6 +91,7 @@ class _RootWindowState extends State<RootWindow> {
       appBar: AppBar(
         title: Text(
           'Farfetch',
+          style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w700, fontSize: 15),
         ),
         actions: <Widget>[
           IconButton(

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../component/tab_bar_icon_item.dart';
+import '../../component/tab_bar_icon_item.dart';
 
 class WindowHome extends StatefulWidget {
   const WindowHome({
