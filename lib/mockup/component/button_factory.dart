@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/constants/constant_border_radius.dart';
-import 'package:pandashop/mockup/constants/constant_colors.dart';
-import 'package:pandashop/mockup/constants/constant_fonts.dart';
+
+import '../constants/constant_border_radius.dart';
+import '../constants/constant_colors.dart';
+import '../constants/constant_fonts.dart';
 
 class ButtonFactory {
   static FlatButton primaryButton(BuildContext context, String title, VoidCallback onPressed) => FlatButton(

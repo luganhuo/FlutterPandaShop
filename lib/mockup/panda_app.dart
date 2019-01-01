@@ -1,9 +1,10 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'core/disable_splash_effect.dart';
 import 'root_window.dart';
 import 'translations.dart';
-import 'core/disable_splash_effect.dart';
 
 class PandaApp extends StatelessWidget {
   @override
@@ -12,8 +13,7 @@ class PandaApp extends StatelessWidget {
       title: 'Farfetch',
       home: RootWindow(),
       localizationsDelegates: [
-        // 提供地区数据和默认的文字布局
-        const TranslationsDelegate(), // 指向默认的处理翻译逻辑的库（后面会讲）
+        const TranslationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],

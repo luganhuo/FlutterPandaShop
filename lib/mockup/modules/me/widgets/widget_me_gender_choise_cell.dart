@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/constants/constant_fonts.dart';
 
 import '../../../constants/constant_colors.dart';
+import '../../../constants/constant_fonts.dart';
 import '../../../constants/constant_spacing.dart';
 import '../../../modules/me/components/component_radio_box.dart';
 import '../../../modules/me/components/component_section_header.dart';

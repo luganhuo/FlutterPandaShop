@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pandashop/mockup/constants/constant_fonts.dart';
 
+import '../mockup/constants/constant_fonts.dart';
 import '../mockup/utils/image_in_assets.dart';
 import 'component/tab_bar_icon_item.dart';
 import 'constants/constant_images.dart';
@@ -91,7 +91,7 @@ class _RootWindowState extends State<RootWindow> {
       appBar: AppBar(
         title: Text(
           'Farfetch',
-          style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w700, fontSize: 15),
+          style: PandaTextStyle.sfui.copyWith(fontWeight: FontWeight.w700, fontSize: 17),
         ),
         actions: <Widget>[
           IconButton(

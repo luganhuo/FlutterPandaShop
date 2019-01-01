@@ -1,18 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../modules/protocols/protocol_main_page.dart';
 
 import '../../component/tab_bar_icon_item.dart';
 
-class WindowHome extends StatefulWidget {
+class WindowHome extends StatefulWidget implements MainPageProtocol {
   const WindowHome({
     Key key,
-    this.tabbarItem,
+    this.tabBarItem,
   }) : super(key: key);
 
-  final TabBarIconItem tabbarItem;
+  final TabBarIconItem tabBarItem;
 
   @override
   State<StatefulWidget> createState() => _WindowHomeState();
+
+  @override
+  Widget naviHeaderView(BuildContext context) {
+    // TODO: implement naviHeaderView
+    return null;
+  }
+
+  @override
+  List<Widget> naviLeftButtons(BuildContext context) {
+    // TODO: implement naviLeftButtons
+    return null;
+  }
+
+  @override
+  List<Widget> naviRightButtons(BuildContext context) {
+    // TODO: implement naviRightButtons
+    return null;
+  }
 }
 
 class _WindowHomeState extends State<WindowHome> {

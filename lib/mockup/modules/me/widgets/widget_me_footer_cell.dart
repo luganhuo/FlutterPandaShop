@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/constants/constant_fonts.dart';
-import 'package:pandashop/mockup/constants/constant_spacing.dart';
-import 'package:pandashop/mockup/translations.dart';
+
+import '../../../constants/constant_fonts.dart';
+import '../../../constants/constant_spacing.dart';
+import '../../../translations.dart';
 
 class WidgetMyPageFooter extends StatelessWidget {
   @override
