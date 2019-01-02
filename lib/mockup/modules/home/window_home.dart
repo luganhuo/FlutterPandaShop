@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../modules/protocols/protocol_main_page.dart';
 
+import '../../constants/constant_images.dart';
+import '../../modules/protocols/protocol_tab_bar_item.dart';
+import '../../translations.dart';
+import '../../utils/image_in_assets.dart';
+import '../../modules/protocols/protocol_main_page.dart';
 import '../../component/tab_bar_icon_item.dart';
 
 class WindowHome extends StatefulWidget implements MainPageProtocol {
   const WindowHome({
     Key key,
-    this.tabBarItem,
   }) : super(key: key);
-
-  final TabBarIconItem tabBarItem;
 
   @override
   State<StatefulWidget> createState() => _WindowHomeState();
@@ -18,7 +19,14 @@ class WindowHome extends StatefulWidget implements MainPageProtocol {
   @override
   Widget naviHeaderView(BuildContext context) {
     // TODO: implement naviHeaderView
-    return null;
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ImageInAssets(name: Images.nav_logo_icon_dark).image(),
+        ],
+      ),
+    );
   }
 
   @override
@@ -31,6 +39,15 @@ class WindowHome extends StatefulWidget implements MainPageProtocol {
   List<Widget> naviRightButtons(BuildContext context) {
     // TODO: implement naviRightButtons
     return null;
+  }
+
+  @override
+  TabBarItemProtocol tabBarItem(BuildContext context) {
+    // TODO: implement tabBarItem
+    return TabBarIconItem(
+        title: Translations.of(context).text("tabbarItemHomeTitle"),
+        icon: ImageIcon(ImageInAssets(name: Images.home_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(ImageInAssets(name: Images.home_onstate_icon).assetImage()));
   }
 }
 

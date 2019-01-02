@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
+
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_fonts.dart';
 import '../../../constants/constant_spacing.dart';
+import '../../../modules/models/ModelEnums.dart';
 import '../../../modules/me/components/component_radio_box.dart';
 import '../../../modules/me/components/component_section_header.dart';
 import '../../../translations.dart';
 
-enum GenderEnum {
-  women,
-  men,
-  secret,
-}
 
 class WidgetMeGenderChoice extends StatefulWidget {
-  final GenderEnum gender;
+  final GenderType gender;
 
-  const WidgetMeGenderChoice({Key key, this.gender = GenderEnum.women}) : super(key: key);
+  const WidgetMeGenderChoice({Key key, this.gender = GenderType.Woman}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _WidgetMeGenderChoiceState();
 }
 
 class _WidgetMeGenderChoiceState extends State<WidgetMeGenderChoice> {
-  GenderEnum gender;
+  GenderType gender;
 
   _WidgetMeGenderChoiceState({this.gender}) : super();
 
@@ -41,19 +38,19 @@ class _WidgetMeGenderChoiceState extends State<WidgetMeGenderChoice> {
           SizedBox(height: Spacing.s),
           RadioBox(
             title: Translations.of(context).text("women"),
-            selected: gender == GenderEnum.women,
+            selected: gender == GenderType.Woman,
             onPressed: () {
               setState(() {
-                gender = GenderEnum.women;
+                gender = GenderType.Woman;
               });
             },
           ),
           RadioBox(
             title: Translations.of(context).text("men"),
-            selected: gender == GenderEnum.men,
+            selected: gender == GenderType.Man,
             onPressed: () {
               setState(() {
-                gender = GenderEnum.men;
+                gender = GenderType.Man;
               });
             },
           ),
@@ -63,7 +60,7 @@ class _WidgetMeGenderChoiceState extends State<WidgetMeGenderChoice> {
               children: <Widget>[
                 Text(
                   Translations.of(context).text("myShopFooter"),
-                  style: PandaTextStyle.polaris.copyWith(fontSize: 12, color: Colours.white34, fontWeight: FontWeight.w300),
+                  style: PandaTextStyle.polaris.copyWith(fontSize: 12, color: Colours.dark, fontWeight: FontWeight.w300),
                 )
               ],
             ),

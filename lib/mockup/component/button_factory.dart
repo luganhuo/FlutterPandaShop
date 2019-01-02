@@ -15,7 +15,7 @@ class ButtonFactory {
           ),
         ),
         onPressed: onPressed,
-        color: Colours.white34,
+        color: Colours.dark,
         highlightColor: Colours.white136,
       );
 
@@ -23,10 +23,10 @@ class ButtonFactory {
         shape: BorderRadiusDef.cornerRadius4,
         child: Text(
           title,
-          style: PandaTextStyle.gotham.copyWith(color: Colours.white34),
+          style: PandaTextStyle.gotham.copyWith(color: Colours.dark),
         ),
         onPressed: onPressed,
-        color: Colours.white216,
+        color: Colours.grey,
         highlightColor: Colours.white246,
       );
 }
