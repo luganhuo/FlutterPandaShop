@@ -1,3 +1,3 @@
 class Defines {
-  static double get ButtonHeightNormal => 44.0;
+  static const double ButtonHeightNormal = 44.0;
 }

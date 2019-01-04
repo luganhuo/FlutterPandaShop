@@ -59,7 +59,7 @@ class _MeWindowState extends State<MeWindow> {
               print('register pressed');
 
               http.Client client = http.Client();
-              String url = "http://www.baidu.com";
+              String url = "http://www.farfetch.com";
               client.get(url)
                   .then((response) => print(response.body))
                   .whenComplete(client.close);

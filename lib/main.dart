@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'mockup/core/router/global_router.dart';
 import 'mockup/panda_app.dart';
 
-void main() => runApp(PandaApp());
+void main() {
+  PandaRouter.setupRoute();
+  runApp(PandaApp());
+}

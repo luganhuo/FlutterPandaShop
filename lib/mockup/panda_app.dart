@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'constants/constant_colors.dart';
 import 'constants/constant_fonts.dart';
-import 'core/disable_splash_effect.dart';
+import 'core/theme/disable_splash_effect.dart';
 import 'root_window.dart';
 import 'translations.dart';
 

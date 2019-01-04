@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pandashop/mockup/component/button.dart';
 
+import '../../component/tab_bar_icon_item.dart';
 import '../../constants/constant_images.dart';
+import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
 import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
-import '../../modules/protocols/protocol_main_page.dart';
-import '../../component/tab_bar_icon_item.dart';
 
 class WindowHome extends StatefulWidget implements MainPageProtocol {
   const WindowHome({
@@ -60,31 +61,24 @@ class _WindowHomeState extends State<WindowHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('HomeWidget'),
-              FlatButton(
-                child: Text('Press FlatButton'),
-                onPressed: () {
-                  print('Flat button pressed');
-                },
+              Button(
+                title: "Primary",
+                onPressed: () => print("Primary button pressed."),
               ),
-              RaisedButton(
-                child: Text('Press RaisedButton'),
-                onPressed: () {
-                  print('RaisedButton pressed.');
-                },
+              Button(
+                title: "Secondary",
+                onPressed: () => print("Secondary button pressed."),
+                style: ButtonStyle(type: ButtonType.secondary),
               ),
-              CupertinoButton(
-                child: Text('Cupertino Button'),
-                onPressed: () {
-                  print("Press CupertinoButton");
-                },
+              Button(
+                title: "Tertiary",
+                onPressed: () => print("Tertiary button pressed."),
+                style: ButtonStyle(type: ButtonType.tertiary),
               ),
-              InkWell(
-                child: Text('This is InkWell'),
-                enableFeedback: false,
-                radius: 0,
-                onTap: () {
-                  print('InkWell pressed');
-                },
+              Button(
+                title: "Flat",
+                onPressed: () => print("Flat button pressed."),
+                style: ButtonStyle(type: ButtonType.flat),
               ),
             ],
           ),
