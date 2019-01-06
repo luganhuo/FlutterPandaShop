@@ -1,5 +1,5 @@
 class RequestOption extends Object {
-  final dynamic Header;
+  final dynamic header;
 
-  RequestOption(this.Header);
+  RequestOption(this.header);
 }

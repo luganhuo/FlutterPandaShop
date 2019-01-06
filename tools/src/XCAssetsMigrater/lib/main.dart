@@ -85,7 +85,7 @@ void main(List<String> argv) {
     final File contentFile = File("${each}/Contents.json");
     String extName = "";
 
-    // print("Processing ${imageAssetName}");
+     print("Processing ${imageAssetName}");
 
     fg.add(contentFile
         .readAsString()
@@ -121,7 +121,7 @@ void main(List<String> argv) {
       }
       // TASK: asset id in yaml for flutter.
       yamlStrBuf.write(normalize("- ${cmdline.assetPrefix}/${imageAssetName}${extName}\n"));
-      outSrcStrBuf.write("  static String get ${normalizeVariableName(imageAssetName)} => \"${cmdline.assetPrefix}/${imageAssetName}${extName}\";\n");
+      outSrcStrBuf.write("  static const String ${normalizeVariableName(imageAssetName)} = \"${cmdline.assetPrefix}/${imageAssetName}${extName}\";\n");
   
       print('[${idx}/${totalImagesCount}] Process ... ${imageAssetName}');
       idx++;

@@ -1,5 +1,4 @@
-import 'package:pandashop/mockup/constants/constant_endpoints.dart';
-
+import '../constants/constant_endpoints.dart';
 import 'obfuscator.dart';
 
 /* 目前只是用product版本的endpoints, sorry.*/

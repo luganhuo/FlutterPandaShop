@@ -1,8 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/constants/constant_colors.dart';
+import 'package:flutter/widgets.dart';
 
-
+import '../../constants/constant_colors.dart';
 
 class BoutiquesListWindow extends StatefulWidget {
   @override

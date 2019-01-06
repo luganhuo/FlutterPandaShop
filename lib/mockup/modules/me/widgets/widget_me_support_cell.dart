@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pandashop/mockup/features/panda_routes.dart';
 
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_spacing.dart';
+import '../../../features/panda_routes.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
 import '../../../translations.dart';
@@ -43,7 +43,9 @@ class WidgetMySupportCell extends StatelessWidget {
                 debugPrint('secondaryNavigationFaqsGuides pressed');
                 PandaFeatures.webView(context, "", "$_farfetchEndpoints/faqs", (_) {});
               }),
-          DataSelector(title: Translations.of(context).text("farfetchPartners"), onPressed: () => print('farfetchPartners pressed')),
+          DataSelector(
+              title: Translations.of(context).text("farfetchPartners"),
+              onPressed: () => print('farfetchPartners pressed')),
         ],
       ),
     );

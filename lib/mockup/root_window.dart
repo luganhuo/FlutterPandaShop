@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pandashop/mockup/modules/protocols/protocol_main_page.dart';
 
 import 'modules/brands/window_brands.dart';
 import 'modules/category/window_category.dart';
 import 'modules/home/window_home.dart';
 import 'modules/me/window_me.dart';
+import 'modules/protocols/protocol_main_page.dart';
 import 'modules/wishlist/window_wishlist.dart';
 
 class RootWindow extends StatefulWidget {
@@ -23,12 +23,7 @@ class _RootWindowState extends State<RootWindow> {
   @override
   void initState() {
     super.initState();
-    _pages
-      ..add(WindowHome())
-      ..add(CategoryWindow())
-      ..add(BrandsWindow())
-      ..add(WishListWindow())
-      ..add(MeWindow());
+    _pages..add(WindowHome())..add(CategoryWindow())..add(BrandsWindow())..add(WishListWindow())..add(MeWindow());
   }
 
   @override
@@ -62,7 +57,7 @@ class _RootWindowState extends State<RootWindow> {
 
     return Scaffold(
       appBar: AppBar(
-        title: _pages[_currentSelectedTab].naviHeaderView(context),
+        title: _pages[_currentSelectedTab].navigatorHeaderView(context),
         actions: <Widget>[
           IconButton(
             icon: Icon(

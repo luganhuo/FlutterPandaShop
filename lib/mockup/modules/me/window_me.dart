@@ -7,7 +7,6 @@ import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
 import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
-
 import 'widgets/widget_me_contract_cell.dart';
 import 'widgets/widget_me_footer_cell.dart';
 import 'widgets/widget_me_gender_choise_cell.dart';
@@ -20,30 +19,28 @@ class MeWindow extends StatefulWidget implements MainPageProtocol {
   _MeWindowState createState() => _MeWindowState();
 
   @override
-  Widget naviHeaderView(BuildContext context) {
-    // TODO: implement naviHeaderView
+  Widget navigatorHeaderView(BuildContext context) {
     return Text(Translations.of(context).text("tabbarItemMeTitle"));
   }
 
   @override
-  List<Widget> naviLeftButtons(BuildContext context) {
-    // TODO: implement naviLeftButtons
+  List<Widget> navigatorLeftButtons(BuildContext context) {
     return null;
   }
 
   @override
-  List<Widget> naviRightButtons(BuildContext context) {
-    // TODO: implement naviRightButtons
+  List<Widget> navigatorRightButtons(BuildContext context) {
     return null;
   }
 
   @override
   TabBarItemProtocol tabBarItem(BuildContext context) {
-    // TODO: implement tabBarItem
     return TabBarIconItem(
         title: Translations.of(context).text("tabbarItemMeTitle"),
-        icon: ImageIcon(ImageInAssets(name: Images.me_offstate_icon).assetImage()),
-        activeIcon: ImageIcon(ImageInAssets(name: Images.me_onstate_icon).assetImage()));
+        icon: ImageIcon(
+            ImageInAssets(name: Images.me_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(
+            ImageInAssets(name: Images.me_onstate_icon).assetImage()));
   }
 }
 
@@ -60,7 +57,8 @@ class _MeWindowState extends State<MeWindow> {
 
               http.Client client = http.Client();
               String url = "http://www.farfetch.com";
-              client.get(url)
+              client
+                  .get(url)
                   .then((response) => print(response.body))
                   .whenComplete(client.close);
             },
