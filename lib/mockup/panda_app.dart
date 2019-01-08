@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'constants/constant_colors.dart';
-import 'constants/constant_fonts.dart';
+import 'features/routes/panda_routes.dart';
 import 'root_window.dart';
 import 'translations.dart';
 
-class PandaApp extends StatelessWidget {
+class PandaApp extends StatefulWidget {
+  @override
+  PandaAppState createState() => new PandaAppState();
+}
+
+class PandaAppState extends State<PandaApp> {
+  PandaAppState() {
+    PandaFeatures.configureRouters();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,18 +32,19 @@ class PandaApp extends StatelessWidget {
         const Locale('zh', 'CN'),
         const Locale('en', 'US'),
       ],
-      theme: ThemeData.light().copyWith(
-        primaryColor: Colours.white246,
-        primaryColorLight: Colours.white246,
-        primaryColorDark: Colours.black,
-        primaryTextTheme: TextTheme(
-          title: PandaTextStyle.polaris.copyWith(
-            color: Colours.black,
-            fontWeight: FontWeight.w700,
-            fontSize: 15.0,
-          ),
-        ),
-      ),
+      theme: ThemeData.light().copyWith(platform: TargetPlatform.iOS),
+//      theme: ThemeData.light().copyWith(
+//        primaryColor: Colours.white246,
+//        primaryColorLight: Colours.white246,
+//        primaryColorDark: Colours.black,
+//        primaryTextTheme: TextTheme(
+//          title: PandaTextStyle.polaris.copyWith(
+//            color: Colours.black,
+//            fontWeight: FontWeight.w700,
+//            fontSize: 15.0,
+//          ),
+//        ),
+//      ),
     );
   }
 }

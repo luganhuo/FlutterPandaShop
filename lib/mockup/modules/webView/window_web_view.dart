@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../mockup/constants/constant_colors.dart';
-import '../../../mockup/constants/constant_fonts.dart';
+import '../../constants/constant_fonts.dart';
 
+@immutable
 class WindowWebView extends StatelessWidget {
   final String title;
   final String url;
 
-  const WindowWebView({Key key, this.title = "", @required this.url}) : super(key: key);
+  WindowWebView({Key key, this.title = "", @required this.url}) : super(key: key);
+
+  WebViewController _controller;
+  _getWebViewController(WebViewController webCtrl) {
+    assert(_controller != webCtrl);
+    _controller = webCtrl;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: this.url,
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(
-          this.title,
-          style: PandaTextStyle.sfui.copyWith(fontSize: 16, fontWeight: FontWeight.w500),
+          this.title.length > 0 ? this.title : this.url,
+          style: PandaTextStyle.polaris.copyWith(fontSize: 18, fontWeight: FontWeight.w700),
         ),
       ),
-      withZoom: true,
-      withLocalStorage: true,
-      hidden: true,
-      initialChild: Container(
-        color: Colours.white216,
-        child: const Center(
-          child: Text('Waiting.....'),
-        ),
-      ),
+      body: Container(
+          child: WebView(
+        onWebViewCreated: _getWebViewController,
+        initialUrl: this.url,
+        javascriptMode: JavascriptMode.unrestricted,
+      )),
     );
   }
 }
