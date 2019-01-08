@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'constants/constant_colors.dart';
 import 'constants/constant_fonts.dart';
-import 'core/theme/disable_splash_effect.dart';
 import 'root_window.dart';
 import 'translations.dart';
 
@@ -26,12 +25,15 @@ class PandaApp extends StatelessWidget {
         const Locale('en', 'US'),
       ],
       theme: ThemeData.light().copyWith(
-        splashFactory: const NoSplashFactory(),
         primaryColor: Colours.white246,
         primaryColorLight: Colours.white246,
         primaryColorDark: Colours.black,
         primaryTextTheme: TextTheme(
-          title: PandaTextStyle.polaris.copyWith(color: Colours.black, fontWeight: FontWeight.w700, fontSize: 15.0),
+          title: PandaTextStyle.polaris.copyWith(
+            color: Colours.black,
+            fontWeight: FontWeight.w700,
+            fontSize: 15.0,
+          ),
         ),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-
 import '../../component/tab_bar_icon_item.dart';
+import '../../component/textfield/input_field.dart';
 import '../../constants/constant_colors.dart';
+import '../../constants/constant_fonts.dart';
 import '../../constants/constant_images.dart';
 import '../../constants/constant_spacing.dart';
 import '../../modules/protocols/protocol_main_page.dart';
@@ -32,43 +33,50 @@ class WishListWindow extends StatefulWidget implements MainPageProtocol {
   TabBarItemProtocol tabBarItem(BuildContext context) {
     return TabBarIconItem(
         title: Translations.of(context).text("tabbarItemWishlistTitle"),
-        icon: ImageIcon(
-            ImageInAssets(name: Images.wishlist_offstate_icon).assetImage()),
-        activeIcon: ImageIcon(
-            ImageInAssets(name: Images.wishlist_onstate_icon).assetImage()));
+        icon: ImageIcon(ImageInAssets(name: Images.wishlist_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(ImageInAssets(name: Images.wishlist_onstate_icon).assetImage()));
   }
 }
 
-class _WishListWindowState extends State<WishListWindow> {
+class _WishListWindowState extends State<WishListWindow> implements InputFieldDelegate {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Material(
-        child: Container(
-          padding: EdgeInsets.all(Spacing.s),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text("Wish List"),
-              SizedBox(height: 8),
-              TextField(
-                onChanged: (newValue) => print(newValue),
-                decoration: InputDecoration(
-                    labelText: "hello world",
-                    prefixIcon: Icon(Icons.perm_identity),
-                    isDense: true,
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colours.grey),
-                        borderRadius: BorderRadius.circular(1.0)),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colours.lightGrey),
-                        borderRadius: BorderRadius.circular(1.0))),
-              )
-            ],
+      padding: EdgeInsets.all(Spacing.s),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Wish List"),
+          SizedBox(height: 8),
+          InputField(
+            obscureMode: false,
+            delegate: this,
+            prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w500)),
+            suffixView: Text("wow", style: PandaTextStyle.sfui.copyWith(fontWeight: FontWeight.w500, color: Colours.dark)),
           ),
-        ),
+        ],
       ),
     );
+  }
+
+  @override
+  bool inputFieldShouldChangedText(InputField inputField, String newValue) {
+    // TODO: implement inputFieldShouldChangedText
+    return (newValue.length <= 10);
+  }
+
+  @override
+  inputFieldTextDidChanged(InputField inputField, String value) {
+    // TODO: implement inputFieldTextDidChanged
+    print(value);
+    return null;
+  }
+
+  @override
+  inputFieldTextDidEndEditing(InputField inputField, String value) {
+    // TODO: implement inputFieldTextDidEndEditing
+    print("input field did end editing: $value");
+    return null;
   }
 }
