@@ -52,9 +52,10 @@ class _WishListWindowState extends State<WishListWindow> implements InputFieldDe
           InputField(
             obscureMode: false,
             delegate: this,
-            prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w500)),
-            suffixView:
-                Text("wow", style: PandaTextStyle.sfui.copyWith(fontWeight: FontWeight.w500, color: Colours.dark)),
+            textStyle: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500),
+            prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500)),
+            hintView: Text("输入错误", style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
+            inputState: InputFieldState.normal,
           ),
         ],
       ),
@@ -64,7 +65,7 @@ class _WishListWindowState extends State<WishListWindow> implements InputFieldDe
   @override
   bool inputFieldShouldChangedText(InputField inputField, String newValue) {
     // TODO: implement inputFieldShouldChangedText
-    return (newValue.length <= 10);
+    return (newValue.length <= "hello world".length);
   }
 
   @override
@@ -79,5 +80,16 @@ class _WishListWindowState extends State<WishListWindow> implements InputFieldDe
     // TODO: implement inputFieldTextDidEndEditing
     print("input field did end editing: $value");
     return null;
+  }
+
+  @override
+  InputFieldState inputFieldStateOfChangedText(InputField inputField, String newValue) {
+    // TODO: implement inputFieldStateOfChangedText
+    const String sample = "hello world";
+    if (newValue.length < sample.length) {
+      return InputFieldState.normal;
+    } else {
+      return (newValue == sample ? InputFieldState.correct : InputFieldState.wrong);
+    }
   }
 }

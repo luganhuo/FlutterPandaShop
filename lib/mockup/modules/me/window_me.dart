@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../../component/tab_bar_icon_item.dart';
 import '../../constants/constant_images.dart';
+import '../../core/external_launch/urlLauncher.dart';
 import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
@@ -64,8 +65,8 @@ class _MeWindowState extends State<MeWindow> {
           WidgetMySettingsCell(enableAppId: true),
           WidgetMySupportCell(),
           WidgetMyContractUsCell(
-            onPressTelephone: () => print("Telephone pressed."),
-            onPressEmail: () => print("Email pressed."),
+            onPressTelephone: () => ExternalLauncher.launchUrl("tel:+8613818871821"),
+            onPressEmail: () => ExternalLauncher.launchUrl("mailto:derrick.zhu@farfetch.com"),
           ),
           WidgetMyPageFooter(),
         ],
