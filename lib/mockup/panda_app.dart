@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/multi_lang/translations.dart';
 import 'features/routes/panda_routes.dart';
 import 'root_window.dart';
-import 'translations.dart';
 
 class PandaApp extends StatefulWidget {
   @override
@@ -33,18 +33,6 @@ class PandaAppState extends State<PandaApp> {
         const Locale('en', 'US'),
       ],
       theme: ThemeData.light().copyWith(platform: TargetPlatform.iOS),
-//      theme: ThemeData.light().copyWith(
-//        primaryColor: Colours.white246,
-//        primaryColorLight: Colours.white246,
-//        primaryColorDark: Colours.black,
-//        primaryTextTheme: TextTheme(
-//          title: PandaTextStyle.polaris.copyWith(
-//            color: Colours.black,
-//            fontWeight: FontWeight.w700,
-//            fontSize: 15.0,
-//          ),
-//        ),
-//      ),
     );
   }
 }

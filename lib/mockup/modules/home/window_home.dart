@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../component/button/button.dart';
 import '../../component/tab_bar_icon_item.dart';
 import '../../constants/constant_images.dart';
+import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
 
 class WindowHome extends StatefulWidget implements MainPageProtocol {
@@ -44,10 +44,8 @@ class WindowHome extends StatefulWidget implements MainPageProtocol {
   TabBarItemProtocol tabBarItem(BuildContext context) {
     return TabBarIconItem(
         title: Translations.of(context).text("tabbarItemHomeTitle"),
-        icon: ImageIcon(
-            ImageInAssets(name: Images.home_offstate_icon).assetImage()),
-        activeIcon: ImageIcon(
-            ImageInAssets(name: Images.home_onstate_icon).assetImage()));
+        icon: ImageIcon(ImageInAssets(name: Images.home_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(ImageInAssets(name: Images.home_onstate_icon).assetImage()));
   }
 }
 
@@ -64,26 +62,22 @@ class _WindowHomeState extends State<WindowHome> {
               Button(
                 title: "Primary",
                 icon: ImageInAssets(name: Images.flag_china).image(),
-                accessoryIcon:
-                    ImageInAssets(name: Images.indicator_arrow_r).image(),
+                accessoryIcon: ImageInAssets(name: Images.indicator_arrow_r).image(),
                 onPressed: () => print("Primary button pressed."),
               ),
               SizedBox(height: 12),
               Button(
                 title: "Secondary",
                 icon: ImageInAssets(name: Images.flag_china).image(),
-                accessoryIcon:
-                    ImageInAssets(name: Images.indicator_arrow_r).image(),
+                accessoryIcon: ImageInAssets(name: Images.indicator_arrow_r).image(),
                 onPressed: () => print("Secondary button pressed."),
-                style: ButtonStyle(
-                    type: ButtonType.secondary, layout: ButtonLayout.block),
+                style: ButtonStyle(type: ButtonType.secondary, layout: ButtonLayout.block),
               ),
               SizedBox(height: 12),
               Button(
                 title: "Tertiary",
                 icon: ImageInAssets(name: Images.flag_china).image(),
-                accessoryIcon:
-                    ImageInAssets(name: Images.indicator_arrow_r).image(),
+                accessoryIcon: ImageInAssets(name: Images.indicator_arrow_r).image(),
                 onPressed: () => print("Tertiary button pressed."),
                 style: ButtonStyle(type: ButtonType.tertiary),
               ),
@@ -91,11 +85,9 @@ class _WindowHomeState extends State<WindowHome> {
               Button(
                 title: "Flat",
                 icon: ImageInAssets(name: Images.flag_china).image(),
-                accessoryIcon:
-                    ImageInAssets(name: Images.indicator_arrow_r).image(),
+                accessoryIcon: ImageInAssets(name: Images.indicator_arrow_r).image(),
                 onPressed: () => print("Flat button pressed."),
-                style: ButtonStyle(
-                    type: ButtonType.flat, layout: ButtonLayout.block),
+                style: ButtonStyle(type: ButtonType.flat, layout: ButtonLayout.block),
               ),
               SizedBox(height: 12),
             ],

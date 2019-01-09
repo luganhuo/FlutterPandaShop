@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../component/tab_bar_icon_item.dart';
 import '../../constants/constant_images.dart';
+import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
 
 class BrandsWindow extends StatefulWidget implements MainPageProtocol {
@@ -29,10 +29,8 @@ class BrandsWindow extends StatefulWidget implements MainPageProtocol {
   TabBarItemProtocol tabBarItem(BuildContext context) {
     return TabBarIconItem(
         title: Translations.of(context).text("tabbarItemShopTitle"),
-        icon: ImageIcon(
-            ImageInAssets(name: Images.shop_offstate_icon).assetImage()),
-        activeIcon: ImageIcon(
-            ImageInAssets(name: Images.shop_onstate_icon).assetImage()));
+        icon: ImageIcon(ImageInAssets(name: Images.shop_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(ImageInAssets(name: Images.shop_onstate_icon).assetImage()));
   }
 }
 

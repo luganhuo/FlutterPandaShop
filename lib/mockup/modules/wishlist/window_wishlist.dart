@@ -6,9 +6,9 @@ import '../../constants/constant_colors.dart';
 import '../../constants/constant_fonts.dart';
 import '../../constants/constant_images.dart';
 import '../../constants/constant_spacing.dart';
+import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
 
 class WishListWindow extends StatefulWidget implements MainPageProtocol {
@@ -53,7 +53,8 @@ class _WishListWindowState extends State<WishListWindow> implements InputFieldDe
             obscureMode: false,
             delegate: this,
             prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontWeight: FontWeight.w500)),
-            suffixView: Text("wow", style: PandaTextStyle.sfui.copyWith(fontWeight: FontWeight.w500, color: Colours.dark)),
+            suffixView:
+                Text("wow", style: PandaTextStyle.sfui.copyWith(fontWeight: FontWeight.w500, color: Colours.dark)),
           ),
         ],
       ),

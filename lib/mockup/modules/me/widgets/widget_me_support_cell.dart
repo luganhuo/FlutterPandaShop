@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_spacing.dart';
+import '../../../core/multi_lang/translations.dart';
 import '../../../features/routes/panda_routes.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
-import '../../../translations.dart';
 
 class WidgetMySupportCell extends StatelessWidget {
   static String get _farfetchEndpoints => "https://www.farfetch.cn";
@@ -63,7 +63,9 @@ class WidgetMySupportCell extends StatelessWidget {
                   (_) {},
                 );
               }),
-          DataSelector(title: Translations.of(context).text("farfetchPartners"), onPressed: () => print('farfetchPartners pressed')),
+          DataSelector(
+              title: Translations.of(context).text("farfetchPartners"),
+              onPressed: () => print('farfetchPartners pressed')),
         ],
       ),
     );

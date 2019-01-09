@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constant_fonts.dart';
 import '../../../constants/constant_spacing.dart';
-import '../../../translations.dart';
+import '../../../core/multi_lang/translations.dart';
 
 class WidgetMyPageFooter extends StatelessWidget {
   @override

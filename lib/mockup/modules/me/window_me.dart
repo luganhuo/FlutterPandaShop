@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 
 import '../../component/tab_bar_icon_item.dart';
 import '../../constants/constant_images.dart';
+import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../translations.dart';
 import '../../utils/image_in_assets.dart';
 import 'widgets/widget_me_contract_cell.dart';
 import 'widgets/widget_me_footer_cell.dart';
@@ -37,10 +37,8 @@ class MeWindow extends StatefulWidget implements MainPageProtocol {
   TabBarItemProtocol tabBarItem(BuildContext context) {
     return TabBarIconItem(
         title: Translations.of(context).text("tabbarItemMeTitle"),
-        icon: ImageIcon(
-            ImageInAssets(name: Images.me_offstate_icon).assetImage()),
-        activeIcon: ImageIcon(
-            ImageInAssets(name: Images.me_onstate_icon).assetImage()));
+        icon: ImageIcon(ImageInAssets(name: Images.me_offstate_icon).assetImage()),
+        activeIcon: ImageIcon(ImageInAssets(name: Images.me_onstate_icon).assetImage()));
   }
 }
 
@@ -57,10 +55,7 @@ class _MeWindowState extends State<MeWindow> {
 
               http.Client client = http.Client();
               String url = "http://www.farfetch.com";
-              client
-                  .get(url)
-                  .then((response) => print(response.body))
-                  .whenComplete(client.close);
+              client.get(url).then((response) => print(response.body)).whenComplete(client.close);
             },
             onSignIn: () => print('signin pressed'),
           ),

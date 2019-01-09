@@ -4,9 +4,9 @@ import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_fonts.dart';
 import '../../../constants/constant_images.dart';
 import '../../../constants/constant_spacing.dart';
+import '../../../core/multi_lang/translations.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
-import '../../../translations.dart';
 import '../../../utils/image_in_assets.dart';
 
 class WidgetMeLocationCell extends StatelessWidget {

@@ -4,7 +4,7 @@ import '../../../component/button/button_factory.dart';
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_define.dart';
 import '../../../constants/constant_spacing.dart';
-import '../../../translations.dart';
+import '../../../core/multi_lang/translations.dart';
 
 class WidgetMeLoginCell extends StatelessWidget {
   final VoidCallback onRegister;
