@@ -19,7 +19,6 @@ dependencies:
     sdk: flutter
   json_annotation: ^2.0.0
   http: ^0.12.0
-#  flutter_webview_plugin: ^0.3.0+2
   webview_flutter: ^0.2.0
   crypto: ^2.0.6
   fluro: ^1.4.0 # route

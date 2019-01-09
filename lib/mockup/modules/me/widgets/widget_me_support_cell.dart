@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
-import '../../../features/routes/panda_routes.dart';
+import '../../../features/routes/panda_feature_helper.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
 
@@ -23,7 +23,7 @@ class WidgetMySupportCell extends StatelessWidget {
               title: Translations.of(context).text("secondaryNavigationAbout"),
               onPressed: () {
                 debugPrint('secondaryNavigationAbout pressed');
-                PandaFeatures.webView(
+                PandaFeatureHelper.webView(
                   context,
                   Translations.of(context).text("secondaryNavigationAbout"),
                   "$_farfetchEndpoints/pag1988.aspx?ffref=ftr",
@@ -34,7 +34,7 @@ class WidgetMySupportCell extends StatelessWidget {
               title: Translations.of(context).text("secondaryNavigationTermsConditions"),
               onPressed: () {
                 debugPrint('secondaryNavigationTermsConditions pressed');
-                PandaFeatures.webView(
+                PandaFeatureHelper.webView(
                   context,
                   Translations.of(context).text("secondaryNavigationTermsConditions"),
                   "$_farfetchEndpoints/terms-and-conditions",
@@ -45,7 +45,7 @@ class WidgetMySupportCell extends StatelessWidget {
               title: Translations.of(context).text("secondaryNavigationPrivacyPolicy"),
               onPressed: () {
                 debugPrint('secondaryNavigationPrivacyPolicy pressed');
-                PandaFeatures.webView(
+                PandaFeatureHelper.webView(
                   context,
                   Translations.of(context).text("secondaryNavigationPrivacyPolicy"),
                   "$_farfetchEndpoints/privacy-policy",
@@ -56,7 +56,7 @@ class WidgetMySupportCell extends StatelessWidget {
               title: Translations.of(context).text("secondaryNavigationFaqsGuides"),
               onPressed: () {
                 debugPrint('secondaryNavigationFaqsGuides pressed');
-                PandaFeatures.webView(
+                PandaFeatureHelper.webView(
                   context,
                   Translations.of(context).text("secondaryNavigationFaqsGuides"),
                   "$_farfetchEndpoints/faqs",

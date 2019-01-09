@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/multi_lang/translations.dart';
-import 'features/routes/panda_routes.dart';
+import 'features/routes/panda_feature_helper.dart';
 import 'root_window.dart';
 
 class PandaApp extends StatefulWidget {
@@ -13,7 +13,7 @@ class PandaApp extends StatefulWidget {
 
 class PandaAppState extends State<PandaApp> {
   PandaAppState() {
-    PandaFeatures.configureRouters();
+    PandaFeatureHelper.registerAllRoutes();
   }
 
   @override
