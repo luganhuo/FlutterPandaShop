@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'modules/brands/window_brands.dart';
-import 'modules/category/window_category.dart';
-import 'modules/home/window_home.dart';
-import 'modules/me/window_me.dart';
-import 'modules/protocols/protocol_main_page.dart';
-import 'modules/wishlist/window_wishlist.dart';
+import 'brands/window_brands.dart';
+import 'category/window_category.dart';
+import 'home/window_home.dart';
+import 'me/window_me.dart';
+import 'protocols/protocol_main_page.dart';
+import 'wishlist/window_wishlist.dart';
 
 class RootWindow extends StatefulWidget {
   @override

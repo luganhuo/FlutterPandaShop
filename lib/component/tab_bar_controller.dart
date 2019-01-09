@@ -6,11 +6,12 @@ class BottomComponent extends StatefulWidget {
   final String btnName;
   final GestureTapCallback onTap;
 
-  BottomComponent(
-      {@required this.icons,
-      @required this.btnName,
-      this.color = Colors.grey,
-      this.onTap});
+  BottomComponent({
+    @required this.icons,
+    @required this.btnName,
+    this.color = Colors.grey,
+    this.onTap,
+  });
 
   @override
   State<BottomComponent> createState() => BottomComponentState();
@@ -24,7 +25,7 @@ class BottomComponentState extends State<BottomComponent> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(widget.icons, color: widget.color),
-          Text(widget.btnName, style: TextStyle(color: widget.color))
+          Text(widget.btnName, style: TextStyle(color: widget.color)),
         ],
       ),
       onTap: widget.onTap,

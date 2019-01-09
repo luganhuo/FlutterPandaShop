@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:pandashop/modules/root_window.dart';
 
 import 'core/multi_lang/translations.dart';
 import 'features/routes/panda_feature_helper.dart';
-import 'root_window.dart';
 
 class PandaApp extends StatefulWidget {
   @override

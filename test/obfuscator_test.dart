@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/mockup/config/obfuscator.dart';
+import '../lib/config/obfuscator.dart';
 
 void main() {
   test("Testing obfuscator...", () {
