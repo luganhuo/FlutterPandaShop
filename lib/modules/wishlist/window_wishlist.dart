@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pandashop/component/textfield/input_field_interface.dart';
 
 import '../../component/tab_bar_icon_item.dart';
 import '../../component/textfield/input_field.dart';
+import '../../component/textfield/input_field_sms.dart';
 import '../../constants/constant_colors.dart';
 import '../../constants/constant_fonts.dart';
 import '../../constants/constant_images.dart';
@@ -38,7 +40,7 @@ class WishListWindow extends StatefulWidget implements MainPageProtocol {
   }
 }
 
-class _WishListWindowState extends State<WishListWindow> implements InputFieldDelegate {
+class _WishListWindowState extends State<WishListWindow> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,46 +52,44 @@ class _WishListWindowState extends State<WishListWindow> implements InputFieldDe
           Text("Wish List"),
           SizedBox(height: 8),
           InputField(
+            text: "hello world",
             obscureMode: false,
-            delegate: this,
             textStyle: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500),
             prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500)),
             hintView: Text("输入错误", style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
             inputState: InputFieldState.normal,
+            shouldChangeText: (newValue) {
+              return (newValue.length <= "hello world".length);
+            },
+            onTextDidChanged: (newValue) => print(newValue),
+            onTextEndEditing: (newValue) => print("input field did end editing: $newValue"),
+            stateOfChangedText: (newValue) {
+              const String sample = "hello world";
+              if (newValue.length < sample.length) {
+                return InputFieldState.normal;
+              } else {
+                return (newValue == sample ? InputFieldState.correct : InputFieldState.wrong);
+              }
+            },
+          ),
+          InputFieldSMS(
+            maxLength: 6,
+            shouldChangeText: (newValue) {
+              return (newValue.length <= 6);
+            },
+            onTextDidChanged: (newValue) => print(newValue),
+            onTextEndEditing: (newValue) => print("input field did end editing: $newValue"),
+            stateOfChangedText: (newValue) {
+              const String sample = "123456";
+              if (newValue.length < sample.length) {
+                return InputFieldState.normal;
+              } else {
+                return (newValue == sample ? InputFieldState.correct : InputFieldState.wrong);
+              }
+            },
           ),
         ],
       ),
     );
-  }
-
-  @override
-  bool inputFieldShouldChangedText(InputField inputField, String newValue) {
-    // TODO: implement inputFieldShouldChangedText
-    return (newValue.length <= "hello world".length);
-  }
-
-  @override
-  inputFieldTextDidChanged(InputField inputField, String value) {
-    // TODO: implement inputFieldTextDidChanged
-    print(value);
-    return null;
-  }
-
-  @override
-  inputFieldTextDidEndEditing(InputField inputField, String value) {
-    // TODO: implement inputFieldTextDidEndEditing
-    print("input field did end editing: $value");
-    return null;
-  }
-
-  @override
-  InputFieldState inputFieldStateOfChangedText(InputField inputField, String newValue) {
-    // TODO: implement inputFieldStateOfChangedText
-    const String sample = "hello world";
-    if (newValue.length < sample.length) {
-      return InputFieldState.normal;
-    } else {
-      return (newValue == sample ? InputFieldState.correct : InputFieldState.wrong);
-    }
   }
 }

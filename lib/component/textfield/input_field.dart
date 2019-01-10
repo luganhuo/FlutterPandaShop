@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pandashop/component/textfield/input_field_interface.dart';
 
 import '../../constants/constant_colors.dart';
 import '../../constants/constant_images.dart';
 import '../../constants/constant_spacing.dart';
 import '../../utils/image_in_assets.dart';
-
-enum InputFieldState {
-  normal,
-  correct,
-  wrong,
-}
-
-abstract class InputFieldDelegate {
-  inputFieldTextDidChanged(InputField inputField, String value);
-  inputFieldTextDidEndEditing(InputField inputField, String value);
-  bool inputFieldShouldChangedText(InputField inputField, String newValue);
-  InputFieldState inputFieldStateOfChangedText(InputField inputField, String newValue);
-}
 
 class InputField extends StatefulWidget {
   final String text;
@@ -30,7 +18,10 @@ class InputField extends StatefulWidget {
   final Widget suffixView;
   final Widget hintView;
   final bool obscureMode;
-  final InputFieldDelegate delegate;
+  final OnTextDidChanged onTextDidChanged;
+  final OnTextEndEditing onTextEndEditing;
+  final ShouldChangeText shouldChangeText;
+  final StateOfChangedText stateOfChangedText;
 
   InputFieldState inputState;
 
@@ -45,12 +36,15 @@ class InputField extends StatefulWidget {
     this.suffixView,
     this.hintView,
     this.obscureMode = false,
-    @required this.delegate,
     this.textStyle,
     this.maxLength = -1,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.inputState = InputFieldState.normal,
+    @required this.onTextDidChanged,
+    @required this.onTextEndEditing,
+    @required this.shouldChangeText,
+    @required this.stateOfChangedText,
   }) : super(key: key);
 
   @override
@@ -62,14 +56,14 @@ class _InputFieldState extends State<InputField> {
   String _oldValue = "";
   FocusNode _focus;
 
-  _InputFieldState(this._controller) {
-    this._focus = FocusNode();
-    this._controller.addListener(_textFieldWatcher);
-  }
+  _InputFieldState(this._controller) : super();
 
   @override
   void initState() {
     // TODO: implement initState
+    this._focus = FocusNode();
+    this._controller.addListener(_textFieldWatcher);
+    this._controller.text = this.widget.text;
     super.initState();
   }
 
@@ -86,37 +80,35 @@ class _InputFieldState extends State<InputField> {
       return;
     }
 
-    if (null == this.widget.delegate) {
-      return;
-    }
-
-    if (false == this.widget.delegate.inputFieldShouldChangedText(this.widget, newValue)) {
+    if (this.widget.shouldChangeText != null && false == this.widget.shouldChangeText(newValue)) {
       this._controller.text = this._oldValue;
       this._controller.selection = TextSelection(baseOffset: this._oldValue.length, extentOffset: this._oldValue.length);
       return;
     }
 
-    this.widget.delegate.inputFieldTextDidChanged(this.widget, newValue);
+    if (this.widget.onTextDidChanged != null) {
+      this.widget.onTextDidChanged(newValue);
+    }
     _oldValue = newValue;
 
-    var newState = this.widget.delegate.inputFieldStateOfChangedText(this.widget, newValue);
-    if (newState != this.widget.inputState) {
-      setState(() {
-        this.widget.inputState = newState;
-      });
+    if (null != this.widget.stateOfChangedText) {
+      var newState = this.widget.stateOfChangedText(newValue);
+      if (newState != this.widget.inputState) {
+        setState(() {
+          this.widget.inputState = newState;
+        });
+      }
     }
   }
 
   void _textFieldDidEndEditing(BuildContext context, String value) {
-    if (null == this.widget.delegate) {
-      return;
-    }
-
-    if (true == this.widget.delegate.inputFieldShouldChangedText(this.widget, value)) {
+    if (this.widget.shouldChangeText != null && true == this.widget.shouldChangeText(value)) {
       this._oldValue = value;
     }
 
-    this.widget.delegate.inputFieldTextDidEndEditing(this.widget, value);
+    if (this.widget.onTextEndEditing != null) {
+      this.widget.onTextEndEditing(value);
+    }
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
@@ -169,7 +161,7 @@ class _InputFieldState extends State<InputField> {
                 runAlignment: WrapAlignment.center,
                 children: suffixIcon,
               ),
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxs, color: color)),
+              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxxs, color: Colours.grey)),
               focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxs, color: color)),
             ),
           ),
