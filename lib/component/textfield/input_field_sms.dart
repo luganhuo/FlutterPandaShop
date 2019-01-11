@@ -8,7 +8,11 @@ import 'input_field_interface.dart';
 
 class InputFieldSMS extends StatefulWidget {
   final String text;
+  final Widget hintView;
   final int maxLength;
+  final Color normalColor;
+  final Color focusColor;
+  final Color errorColor;
   final ShouldChangeText shouldChangeText;
   final OnTextDidChanged onTextDidChanged;
   final OnTextEndEditing onTextEndEditing;
@@ -22,10 +26,14 @@ class InputFieldSMS extends StatefulWidget {
     Key key,
     this.maxLength = 6,
     this.text = "",
+    this.hintView,
     @required this.shouldChangeText,
     @required this.onTextDidChanged,
     @required this.onTextEndEditing,
     @required this.stateOfChangedText,
+    this.normalColor = Colours.grey,
+    this.focusColor = Colours.dark,
+    this.errorColor = Colours.red,
   }) : super(key: key);
 
   @override
@@ -34,10 +42,12 @@ class InputFieldSMS extends StatefulWidget {
 
 class _InputFieldSMSState extends State<InputFieldSMS> {
   List<String> _allSMSCode = List<String>();
+  FocusNode _focusNode;
   bool _inEditing = false;
 
   @override
   void initState() {
+    this._focusNode = FocusNode();
     this._allSMSCode = List<String>(this.widget.maxLength);
     for (int idx = 0; idx < this.widget.maxLength; ++idx) {
       if (idx < this.widget.text.length) {
@@ -49,8 +59,6 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
 
     this.widget._controller.addListener(_textFieldWatcher);
     this.widget._controller.text = this.widget.text;
-
-    print(this._allSMSCode);
 
     super.initState();
   }
@@ -76,6 +84,7 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
               children: _codeWidgetsList(context),
             ),
             TextField(
+              focusNode: this._focusNode,
               controller: this.widget._controller,
               style: TextStyle(color: Colours.clear),
               onEditingComplete: () => _textFieldDidEndEditing(context, this.widget._preValue),
@@ -90,7 +99,10 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
             ),
           ]),
           SizedBox(height: Spacing.xxxs),
-          Text("hello world", style: PandaTextStyle.sfui.copyWith(color: Colours.red)),
+          Opacity(
+            opacity: (this.widget._inputState == InputFieldState.wrong ? 1.0 : 0.0),
+            child: this.widget.hintView ?? Container(),
+          ),
         ],
       ),
     );
@@ -108,6 +120,10 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
           padding: EdgeInsets.only(top: kGap, bottom: kGap, right: kGap),
           child: _SMSCodeWidget(
             text: content,
+            textColor: this.widget.normalColor,
+            normalColor: this.widget.normalColor,
+            focusColor: this.widget.focusColor,
+            errorColor: this.widget.errorColor,
             error: (this.widget._inputState == InputFieldState.wrong),
             highLight: (this._inEditing && this.widget._preValue.length == idx),
           ),
@@ -159,6 +175,7 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
       this.widget.onTextEndEditing(value);
     }
 
+    FocusScope.of(context).requestFocus(FocusNode());
     setState(() {
       this._inEditing = false;
     });
@@ -166,6 +183,8 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
 
   void _textFieldOnTap() {
     this._justResetToPreValue();
+    this._refulfillEachSMSCode(this.widget._preValue);
+
     setState(() {
       this._inEditing = true;
     });
@@ -204,26 +223,54 @@ class _InputFieldSMSState extends State<InputFieldSMS> {
 
 class _SMSCodeWidget extends StatelessWidget {
   final String text;
+  final Color textColor;
   final bool highLight;
   final bool error;
 
-  const _SMSCodeWidget({Key key, this.text = "", this.highLight = false, this.error = false}) : super(key: key);
+  final Color normalColor;
+  final Color focusColor;
+  final Color errorColor;
+
+  const _SMSCodeWidget({
+    Key key,
+    this.text = "",
+    this.textColor = Colours.dark,
+    this.highLight = false,
+    this.error = false,
+    this.normalColor,
+    this.focusColor,
+    this.errorColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Color curColor = this.normalColor;
+    double focusWidth = 1.0;
+
+    if (this.highLight) {
+      curColor = this.focusColor;
+      focusWidth = 2.0;
+    }
+    if (this.error) {
+      curColor = this.errorColor;
+    }
+
     return Container(
       constraints: BoxConstraints.loose(Size(44, 44)),
       decoration: BoxDecoration(
         border: Border(
             bottom: BorderSide(
-          color: (this.error ? Colours.red : Colours.dark),
-          width: (this.highLight ? 2.0 : 1.0),
+          color: curColor,
+          width: focusWidth,
         )),
         color: Colours.clear,
       ),
       child: Center(
         child: Stack(children: <Widget>[
-          Text(this.text),
+          Text(
+            this.text,
+            style: PandaTextStyle.sfui.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
         ]),
       ),
     );

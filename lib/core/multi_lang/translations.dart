@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -11,15 +13,10 @@ class Translations {
   }
 
   Locale locale;
-  static Map<dynamic, dynamic> _localizedValues;
 
-  static Translations of(BuildContext context){
-    return Localizations.of<Translations>(context, Translations);
-  }
+  static Map<String, dynamic> _localizedValues;
 
-  String text(String key) {
-    return _localizedValues[key] ?? '** $key not found';
-  }
+  static Translations of(BuildContext context) => Localizations.of<Translations>(context, Translations);
 
   static Future<Translations> load(Locale locale) async {
     Translations translations = new Translations(locale);
@@ -27,6 +24,8 @@ class Translations {
     _localizedValues = json.decode(jsonContent);
     return translations;
   }
+
+  String text(String key) => _localizedValues[key] ?? '** $key not found';
 
   get currentLanguage => locale.languageCode;
 }
@@ -36,10 +35,7 @@ class TranslationsDelegate extends LocalizationsDelegate<Translations> {
   const TranslationsDelegate();
 
   @override
-  bool isSupported(Locale locale) {
-    print(locale.languageCode);
-    return ['en','zh'].contains(locale.languageCode);
-  }
+  bool isSupported(Locale locale) => ['en', 'zh'].contains(locale.languageCode);
 
   @override
   Future<Translations> load(Locale locale) => Translations.load(locale);

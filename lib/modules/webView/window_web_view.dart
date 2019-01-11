@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:pandashop/core/route/panda_routable_model.dart';
+import 'package:pandashop/features/routes/panda_feature_helper.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../constants/constant_fonts.dart';
 
-class WindowWebView extends StatefulWidget {
+class WindowWebView extends StatefulWidget implements PandaFeaturePrividerProtocol {
   final String title;
   final String url;
 
   WindowWebView({Key key, this.title = "", @required this.url}) : super(key: key);
 
+  static List<PandaRoutableModel> allFeatureRoutes() => [
+        PandaRoutableModel(
+          route: "/webView",
+          handler: RouteHandler(
+              handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
+                var origin = parameters["uri"]?.first;
+                Map<String, dynamic> jsonObj = PandaRoutableModel.decodeAsMap(origin);
+
+                var url = jsonObj["url"];
+                var title = "";
+                if (jsonObj.containsKey("title")) {
+                  title = jsonObj["title"];
+                }
+
+                return WindowWebView(title: title, url: url);
+              },
+              type: RouteHandleType.route),
+        )
+      ];
+
   @override
-  WindowWebViewState createState() {
-    return new WindowWebViewState();
-  }
+  WindowWebViewState createState() => WindowWebViewState();
 }
 
 class WindowWebViewState extends State<WindowWebView> {

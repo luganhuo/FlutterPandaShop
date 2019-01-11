@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../constants/constant_colors.dart';
 import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
-import '../../../features/routes/panda_feature_helper.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
+import '../../webView/panda_features_webview.dart';
 
 class WidgetMySupportCell extends StatelessWidget {
   static String get _farfetchEndpoints => "https://www.farfetch.cn";
@@ -23,44 +23,44 @@ class WidgetMySupportCell extends StatelessWidget {
               title: Translations.of(context).text("secondaryNavigationAbout"),
               onPressed: () {
                 debugPrint('secondaryNavigationAbout pressed');
-                PandaFeatureHelper.webView(
+                gotoWebView(
                   context,
-                  Translations.of(context).text("secondaryNavigationAbout"),
                   "$_farfetchEndpoints/pag1988.aspx?ffref=ftr",
                   (_) {},
+                  title: Translations.of(context).text("secondaryNavigationAbout"),
                 );
               }),
           DataSelector(
               title: Translations.of(context).text("secondaryNavigationTermsConditions"),
               onPressed: () {
                 debugPrint('secondaryNavigationTermsConditions pressed');
-                PandaFeatureHelper.webView(
+                gotoWebView(
                   context,
-                  Translations.of(context).text("secondaryNavigationTermsConditions"),
                   "$_farfetchEndpoints/terms-and-conditions",
                   (_) {},
+                  title: Translations.of(context).text("secondaryNavigationTermsConditions"),
                 );
               }),
           DataSelector(
               title: Translations.of(context).text("secondaryNavigationPrivacyPolicy"),
               onPressed: () {
                 debugPrint('secondaryNavigationPrivacyPolicy pressed');
-                PandaFeatureHelper.webView(
+                gotoWebView(
                   context,
-                  Translations.of(context).text("secondaryNavigationPrivacyPolicy"),
                   "$_farfetchEndpoints/privacy-policy",
                   (_) {},
+                  title: Translations.of(context).text("secondaryNavigationPrivacyPolicy"),
                 );
               }),
           DataSelector(
               title: Translations.of(context).text("secondaryNavigationFaqsGuides"),
               onPressed: () {
                 debugPrint('secondaryNavigationFaqsGuides pressed');
-                PandaFeatureHelper.webView(
+                gotoWebView(
                   context,
-                  Translations.of(context).text("secondaryNavigationFaqsGuides"),
                   "$_farfetchEndpoints/faqs",
                   (_) {},
+                  title: Translations.of(context).text("secondaryNavigationFaqsGuides"),
                 );
               }),
           DataSelector(

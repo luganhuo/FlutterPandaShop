@@ -56,7 +56,8 @@ class _WishListWindowState extends State<WishListWindow> {
             obscureMode: false,
             textStyle: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500),
             prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500)),
-            hintView: Text("输入错误", style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
+            hintView: Text("输入错误",
+                style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
             inputState: InputFieldState.normal,
             shouldChangeText: (newValue) {
               return (newValue.length <= "hello world".length);
@@ -74,6 +75,14 @@ class _WishListWindowState extends State<WishListWindow> {
           ),
           InputFieldSMS(
             maxLength: 6,
+            hintView: Text(
+              "验证码不正确，请重新输入",
+              style: PandaTextStyle.sfui.copyWith(
+                color: Colours.red,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             shouldChangeText: (newValue) {
               return (newValue.length <= 6);
             },
