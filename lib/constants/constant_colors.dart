@@ -15,6 +15,7 @@ class Colours {
   static const Color bronze = Color(0xFF75483E);
   static const Color silver = Color(0xFF536477);
   static const Color platinum = Color(0xFF474B53);
+  static const Color weChatGreen = Color(0xFF1AAD19);
 
   static const Color black = Color.fromRGBO(0, 0, 0, 1.0);
   static const Color white17 = Color.fromRGBO(17, 17, 17, 1.0);

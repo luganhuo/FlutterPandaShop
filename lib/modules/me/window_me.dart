@@ -7,6 +7,7 @@ import '../../core/external_launch/urlLauncher.dart';
 import '../../core/multi_lang/translations.dart';
 import '../../modules/protocols/protocol_main_page.dart';
 import '../../modules/protocols/protocol_tab_bar_item.dart';
+import '../../modules/signUpAndSignIn/panda_features_login.dart';
 import '../../utils/image_in_assets.dart';
 import 'widgets/widget_me_contract_cell.dart';
 import 'widgets/widget_me_footer_cell.dart';
@@ -58,7 +59,10 @@ class _MeWindowState extends State<MeWindow> {
               String url = "http://www.farfetch.com";
               client.get(url).then((response) => print(response.body)).whenComplete(client.close);
             },
-            onSignIn: () => print('signin pressed'),
+            onSignIn: () {
+              print('signin pressed');
+              gotoLogin(context);
+            },
           ),
           WidgetMeLocationCell(),
           WidgetMeGenderChoice(),

@@ -23,6 +23,11 @@ dependencies:
   crypto: ^2.0.6            # crypto secure
   fluro: ^1.4.0             # route
   url_launcher: ^4.0.3      # external url launch, phone, sms, html, e-mail
+  # flutter_pdf_renderer: any  # pdf render object for pdf assets.
+  ff_pdf_view:
+    git:
+      url: git@github.com:derrick-zhu/FlutterPDFImage.git
+      ref: develop
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,6 +57,7 @@ flutter:
   assets:
     - locale/i18n_en.json
     - locale/i18n_zh.json
+    - assets/pdf/WeChatLogo.pdf
     - assets/images/flag_nepal.png
     - assets/images/close_button_icon_grey.png
     - assets/images/flag_lithuania.png

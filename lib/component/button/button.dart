@@ -31,8 +31,7 @@ class Button extends StatelessWidget {
     @required this.onPressed,
     this.layout = ButtonLayout.fluid,
     this.iconAlign = ButtonIconAlign.right,
-    this.contentEdgetInsets =
-        const EdgeInsets.fromLTRB(Spacing.s, Spacing.s, Spacing.s, Spacing.s),
+    this.contentEdgetInsets = const EdgeInsets.fromLTRB(Spacing.s, Spacing.s, Spacing.s, Spacing.s),
     this.style = ButtonStyle.defaultStyle,
     this.inverted = false,
   }) : super(key: key);
@@ -50,10 +49,7 @@ class Button extends StatelessWidget {
         child: Container(
           child: Text(
             this.title,
-            style: TextStyle(
-                fontSize: this.fontSize,
-                fontWeight: FontWeight.w500,
-                color: this.style.textColor()),
+            style: TextStyle(fontSize: this.fontSize, fontWeight: FontWeight.w500, color: this.style.textColor()),
             textAlign: this.style.textAlign(),
           ),
         ),
@@ -64,8 +60,7 @@ class Button extends StatelessWidget {
 
     return RawMaterialButton(
       padding: this.contentEdgetInsets,
-      shape:
-          BoarderStyleBuilder.borderBuilder(borderColor: style.borderColor()),
+      shape: BoarderStyleBuilder.borderBuilder(borderColor: style.borderColor()),
       child: Row(
         children: children,
       ),
@@ -84,16 +79,58 @@ class ButtonStyle {
   final ButtonType type;
   final ButtonLayout layout;
 
-  const ButtonStyle({this.layout = ButtonLayout.fluid, this.type});
+  final Color colorText;
+  final TextAlign alignText;
+  final Color colorBackground;
+  final Color colorHighlight;
+  final Color colorBorder;
+  final double widthBorder;
 
-  static const ButtonStyle defaultStyle =
-      ButtonStyle(type: ButtonType.primary, layout: ButtonLayout.fluid);
+  const ButtonStyle({
+    this.layout = ButtonLayout.fluid,
+    this.type,
+    this.colorText,
+    this.alignText,
+    this.colorBackground,
+    this.colorHighlight,
+    this.colorBorder,
+    this.widthBorder,
+  });
+
+  static const ButtonStyle defaultStyle = const ButtonStyle(
+    type: ButtonType.primary,
+    layout: ButtonLayout.fluid,
+  );
 
   // constants
   static const double _buttonBorderWidth = 1.0;
   static const double _tertiaryBorderColorAlpha = 0.1;
 
+  ButtonStyle copyWith({
+    ButtonType type,
+    ButtonLayout layout,
+    Color textColor,
+    TextAlign alignText,
+    Color colorBackground,
+    Color colorHighlight,
+    Color colorBorder,
+    double widthBorder,
+  }) {
+    return ButtonStyle(
+      type: type ?? this.type,
+      layout: layout ?? this.layout,
+      colorText: textColor ?? this.colorText,
+      alignText: alignText ?? this.alignText,
+      colorBackground: colorBackground ?? this.colorBackground,
+      colorHighlight: colorHighlight ?? this.colorHighlight,
+      colorBorder: colorBorder ?? this.colorBorder,
+      widthBorder: widthBorder ?? this.widthBorder,
+    );
+  }
+
   Color textColor({bool inverted = false}) {
+    if (null != colorText) return colorText;
+
     switch (this.type) {
       case ButtonType.primary:
         return inverted ? Colours.dark : Colours.white;
@@ -113,6 +150,8 @@ class ButtonStyle {
   }
 
   TextAlign textAlign() {
+    if (null != alignText) return alignText;
+
     if (this.layout == ButtonLayout.fluid) {
       return TextAlign.center;
     } else if (this.layout == ButtonLayout.block) {
@@ -123,6 +162,8 @@ class ButtonStyle {
   }
 
   Color backgroundColor({bool inverted = false}) {
+    if (null != colorBackground) return colorBackground;
+
     switch (this.type) {
       case ButtonType.primary:
         return inverted ? Colours.white : Colours.dark;
@@ -140,6 +181,8 @@ class ButtonStyle {
   }
 
   Color highlightColor() {
+    if (null != colorHighlight) return colorHighlight;
+
     if (this.type == ButtonType.secondary)
       return Colours.white.withAlpha(128);
     else
@@ -147,6 +190,8 @@ class ButtonStyle {
   }
 
   Color borderColor({bool inverted = false}) {
+    if (null != colorBorder) return colorBorder;
+
     switch (this.type) {
       case ButtonType.primary:
       case ButtonType.secondary:
@@ -154,9 +199,7 @@ class ButtonStyle {
         return Colours.clear;
 
       case ButtonType.tertiary:
-        return inverted
-            ? Colours.white.withAlpha((_tertiaryBorderColorAlpha * 255).toInt())
-            : Colours.dark.withAlpha((_tertiaryBorderColorAlpha * 255).toInt());
+        return inverted ? Colours.white.withAlpha((_tertiaryBorderColorAlpha * 255).toInt()) : Colours.dark.withAlpha((_tertiaryBorderColorAlpha * 255).toInt());
 
       default:
         return Colours.clear;
@@ -164,6 +207,7 @@ class ButtonStyle {
   }
 
   double borderWidth() {
+    if (null != widthBorder) return widthBorder;
     switch (this.type) {
       case ButtonType.primary:
       case ButtonType.secondary:

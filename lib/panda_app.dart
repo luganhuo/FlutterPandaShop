@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pandashop/modules/root_window.dart';
-import 'package:pandashop/modules/webView/window_web_view.dart';
 
 import 'core/multi_lang/translations.dart';
 import 'features/routes/panda_feature_helper.dart';
+import 'modules/root_window.dart';
+import 'modules/signUpAndSignIn/window_signup.dart';
+import 'modules/webView/window_web_view.dart';
 
 class PandaApp extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class PandaApp extends StatefulWidget {
 class PandaAppState extends State<PandaApp> {
   PandaAppState() {
     PandaFeatureHelper().appendRoute(WindowWebView.allFeatureRoutes());
+    PandaFeatureHelper().appendRoute(WindowSignUp.allFeatureRoutes());
     PandaFeatureHelper().registerAllRoutes();
   }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pandashop/component/textfield/input_field_interface.dart';
 
 import '../../component/tab_bar_icon_item.dart';
 import '../../component/textfield/input_field.dart';
+import '../../component/textfield/input_field_interface.dart';
 import '../../component/textfield/input_field_sms.dart';
 import '../../constants/constant_colors.dart';
 import '../../constants/constant_fonts.dart';
@@ -56,8 +56,7 @@ class _WishListWindowState extends State<WishListWindow> {
             obscureMode: false,
             textStyle: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500),
             prefixView: Text("+86", style: PandaTextStyle.polaris.copyWith(fontSize: 17, fontWeight: FontWeight.w500)),
-            hintView: Text("输入错误",
-                style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
+            hintView: Text("输入错误", style: PandaTextStyle.polaris.copyWith(color: Colours.red, fontSize: 14, fontWeight: FontWeight.w500)),
             inputState: InputFieldState.normal,
             shouldChangeText: (newValue) {
               return (newValue.length <= "hello world".length);

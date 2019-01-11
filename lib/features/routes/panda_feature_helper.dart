@@ -1,7 +1,7 @@
 import '../../core/route/panda_routable_model.dart';
 import '../../core/route/panda_routes.dart';
 
-abstract class PandaFeaturePrividerProtocol {
+abstract class PandaFeatureProviderProtocol {
   static List<PandaRoutableModel> allFeatureRoutes() => null;
 }
 

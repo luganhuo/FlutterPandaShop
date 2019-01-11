@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pandashop/component/textfield/input_field_interface.dart';
 
+import '../../component/textfield/input_field_interface.dart';
 import '../../constants/constant_colors.dart';
+import '../../constants/constant_fonts.dart';
 import '../../constants/constant_images.dart';
 import '../../constants/constant_spacing.dart';
 import '../../utils/image_in_assets.dart';
 
 class InputField extends StatefulWidget {
   final String text;
+  final String hintText;
   final int maxLength;
   final TextStyle textStyle;
+  final TextStyle hintStyle;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final String placeHolderText;
@@ -32,11 +35,13 @@ class InputField extends StatefulWidget {
     Key key,
     this.placeHolderText = "",
     this.text = "",
+    this.textStyle,
+    this.hintText,
+    this.hintStyle,
     this.prefixView,
     this.suffixView,
     this.hintView,
     this.obscureMode = false,
-    this.textStyle,
     this.maxLength = -1,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
@@ -58,9 +63,14 @@ class _InputFieldState extends State<InputField> {
 
   _InputFieldState(this._controller) : super();
 
+  TextStyle get _defaultTextStyle => this.widget.textStyle ?? PandaTextStyle.sfui.copyWith(color: Colours.dark, fontSize: 18, fontWeight: FontWeight.w500);
+  TextStyle get _mainTextStyle => _defaultTextStyle.copyWith();
+  TextStyle get _labelTextStyle =>
+      _defaultTextStyle.copyWith(color: ((_defaultTextStyle.color != null) ? _defaultTextStyle.color.withAlpha(200) : Colours.darkGrey), fontSize: 14, fontWeight: FontWeight.w500);
+  TextStyle get _hintTextStyle => this.widget.hintStyle ?? _defaultTextStyle.copyWith(color: ((_defaultTextStyle.color != null) ? _defaultTextStyle.color.withAlpha(200) : Colours.darkGrey));
+
   @override
   void initState() {
-    // TODO: implement initState
     this._focus = FocusNode();
     this._controller.addListener(_textFieldWatcher);
     this._controller.text = this.widget.text;
@@ -69,7 +79,6 @@ class _InputFieldState extends State<InputField> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     this._controller.dispose();
     super.dispose();
   }
@@ -112,18 +121,21 @@ class _InputFieldState extends State<InputField> {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  @override
-  Widget build(BuildContext context) {
+  InputDecoration _defaultInputDecoration({Color enableBorderColor, Color focusBorderColor}) => InputDecoration(
+        hintStyle: this._hintTextStyle,
+        hintText: this.widget.hintText,
+//        labelText: this.widget.hintText,
+//        labelStyle: this._labelTextStyle,
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxxs, color: enableBorderColor ?? Colours.grey)),
+        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxs, color: focusBorderColor ?? Colours.darkGrey)),
+      );
+
+  InputDecoration _inputDecoration() {
     List<Widget> prefixIcon = List<Widget>();
     List<Widget> suffixIcon = List<Widget>();
-    Widget externalHint = SizedBox(height: 20);
+
     bool error = this.widget.inputState == InputFieldState.wrong;
     bool normal = this.widget.inputState == InputFieldState.normal;
-    Color color = error ? Colours.red : Colours.dark;
-
-    if (this.widget.inputState == InputFieldState.wrong) {
-      externalHint = (this.widget.hintView != null ? this.widget.hintView : SizedBox(height: 20));
-    }
 
     if (this.widget.prefixView != null) {
       prefixIcon.add(this.widget.prefixView);
@@ -137,45 +149,87 @@ class _InputFieldState extends State<InputField> {
       }
     }
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          TextField(
-            focusNode: this._focus,
-            style: this.widget.textStyle,
-            controller: this._controller,
-            keyboardType: this.widget.keyboardType,
-            textInputAction: this.widget.textInputAction,
-            onEditingComplete: () => _textFieldDidEndEditing(context, this._oldValue),
-            onSubmitted: (value) => _textFieldDidEndEditing(context, value),
-            obscureText: this.widget.obscureMode,
-            decoration: InputDecoration(
-              prefixIcon: Wrap(
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.start,
-                runAlignment: WrapAlignment.center,
-                children: prefixIcon,
-              ),
-              suffixIcon: Wrap(
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                children: suffixIcon,
-              ),
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxxs, color: Colours.grey)),
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: Spacing.xxxs, color: color)),
+    Color color = error ? Colours.red : Colours.dark;
+
+    if (prefixIcon.length != 0 && suffixIcon.length != 0) {
+      return _defaultInputDecoration(focusBorderColor: color).copyWith(
+        prefixIcon: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.center,
+          children: prefixIcon,
+        ),
+        suffixIcon: Wrap(
+          alignment: WrapAlignment.center,
+          runAlignment: WrapAlignment.center,
+          children: suffixIcon,
+        ),
+      );
+    } else if (prefixIcon.length != 0) {
+      return _defaultInputDecoration(focusBorderColor: color).copyWith(
+        prefixIcon: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.center,
+          children: prefixIcon,
+        ),
+      );
+    } else if (suffixIcon.length != 0) {
+      return _defaultInputDecoration(focusBorderColor: color).copyWith(
+        suffixIcon: Wrap(
+          alignment: WrapAlignment.center,
+          runAlignment: WrapAlignment.center,
+          children: suffixIcon,
+        ),
+      );
+    } else {
+      return _defaultInputDecoration(focusBorderColor: color);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (this.widget.inputState == InputFieldState.wrong) {
+      return Container(
+        child: Column(
+          children: <Widget>[
+            TextField(
+              focusNode: this._focus,
+              style: this.widget.textStyle,
+              controller: this._controller,
+              keyboardType: this.widget.keyboardType,
+              textInputAction: this.widget.textInputAction,
+              onEditingComplete: () => _textFieldDidEndEditing(context, this._oldValue),
+              onSubmitted: (value) => _textFieldDidEndEditing(context, value),
+              obscureText: this.widget.obscureMode,
+              decoration: _inputDecoration(),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: Spacing.xxxs),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                externalHint,
-              ],
+            Container(
+              padding: EdgeInsets.only(top: Spacing.xxxs),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  this.widget.hintView ?? SizedBox(height: 20),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    } else {
+      return Container(
+        child: TextField(
+          focusNode: this._focus,
+          style: this.widget.textStyle,
+          controller: this._controller,
+          keyboardType: this.widget.keyboardType,
+          textInputAction: this.widget.textInputAction,
+          onEditingComplete: () => _textFieldDidEndEditing(context, this._oldValue),
+          onSubmitted: (value) => _textFieldDidEndEditing(context, value),
+          obscureText: this.widget.obscureMode,
+          decoration: _inputDecoration(),
+        ),
+      );
+    }
   }
 }

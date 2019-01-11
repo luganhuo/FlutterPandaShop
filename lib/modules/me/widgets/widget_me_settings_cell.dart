@@ -31,15 +31,12 @@ class _WidgetMySettingsCellState extends State<WidgetMySettingsCell> {
             title: Translations.of(context).text("mySettings"),
           ),
           SizedBox(height: Spacing.s),
-          DataSelector(
-              title: Translations.of(context).text("notifications"), onPressed: () => print('notifications pressed')),
-          DataSelector(
-              title: Translations.of(context).text("locationServices"),
-              onPressed: () => print('locationServices pressed')),
+          DataSelector(title: Translations.of(context).text("notifications"), onPressed: () => print('notifications pressed')),
+          DataSelector(title: Translations.of(context).text("locationServices"), onPressed: () => print('locationServices pressed')),
           CheckBox(
               title: Translations.of(context).text("enableFaceIdTitle"),
               onOrOff: this.enableAppId,
-              onPressed: () => setState(() {
+              onPressed: (bool newValue) => setState(() {
                     this.enableAppId = !this.enableAppId;
                   }))
         ],
