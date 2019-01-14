@@ -22,11 +22,12 @@ class WidgetSignUpOauthFromWeChatState extends State<WidgetSignUpOauthFromWeChat
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(Spacing.m, Spacing.xs + Spacing.s, Spacing.m, Spacing.m),
-      color: Colours.darkGrey,
+      color: Colours.clear,
       child: Button(
         icon: PDFImage(sourceFile: "assets/pdf/WeChatLogo.pdf"),
         title: Translations.of(context).text("weChatAuthButtonTitle"),
-        style: ButtonStyle(layout: ButtonLayout.fluid, type: ButtonType.primary).copyWith(colorBackground: Colours.weChatGreen),
+        style: ButtonStyle(layout: ButtonLayout.fluid, type: ButtonType.primary)
+            .copyWith(colorBackground: Colours.weChatGreen),
         onPressed: this.widget.onPressed,
       ),
     );

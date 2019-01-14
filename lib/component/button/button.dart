@@ -38,14 +38,28 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = List<Widget>();
-
-    if (this.icon != null) children.add(this.icon);
-    if (this.title != null && this.title.isNotEmpty) {
+    Widget iconLayer;
+    if (this.icon != null || this.accessoryIcon != null) {
+      List<Widget> children = List<Widget>();
+      if (this.icon != null) children.add(this.icon);
+      children.add(Spacer());
+      if (null != this.accessoryIcon) children.add(this.accessoryIcon);
       if (children.isNotEmpty) {
-        children.add(SizedBox(width: Spacing.xs + Spacing.xxxs));
+        iconLayer = Row(
+          children: children,
+          mainAxisAlignment: MainAxisAlignment.center,
+        );
       }
-      children.add(Expanded(
+    } else {
+      iconLayer = Container();
+    }
+
+    Widget titleLayer;
+    if (this.title != null && this.title.isNotEmpty) {
+      List<Widget> titleList = List<Widget>();
+      titleList.add(SizedBox(width: 20));
+
+      titleList.add(Expanded(
         child: Container(
           child: Text(
             this.title,
@@ -54,15 +68,17 @@ class Button extends StatelessWidget {
           ),
         ),
       ));
-      children.add(SizedBox(width: Spacing.xs + Spacing.xxxs));
+      titleList.add(SizedBox(width: 20));
+      titleLayer = Row(children: titleList, mainAxisAlignment: MainAxisAlignment.center);
+    } else {
+      titleLayer = Container();
     }
-    if (this.accessoryIcon != null) children.add(this.accessoryIcon);
 
     return RawMaterialButton(
       padding: this.contentEdgetInsets,
       shape: BoarderStyleBuilder.borderBuilder(borderColor: style.borderColor()),
-      child: Row(
-        children: children,
+      child: Stack(
+        children: [iconLayer, titleLayer],
       ),
       fillColor: this.style.backgroundColor(),
       highlightColor: this.style.highlightColor(),
