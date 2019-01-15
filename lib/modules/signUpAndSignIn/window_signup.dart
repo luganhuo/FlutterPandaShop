@@ -10,9 +10,7 @@ import '../../core/route/panda_routable_model.dart';
 import '../../features/routes/panda_feature_helper.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_email.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_legal.dart';
-import '../../modules/signUpAndSignIn/widgets/widget_signup_seperator_line.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_title.dart';
-import '../../modules/signUpAndSignIn/widgets/widget_signup_with_wechat.dart';
 import '../../utils/image_in_assets.dart';
 import '../../utils/keyboard_utils.dart';
 
@@ -70,9 +68,9 @@ class _WindowSignUpState extends State<WindowSignUp> {
                   style: ButtonStyle(type: ButtonType.primary),
                 ),
               ),
-              Spacer(),
-              WidgetSignUpSeparatorLine(),
-              WidgetSignUpOauthFromWeChat(),
+//              Spacer(),
+//              WidgetSignUpSeparatorLine(),
+//              WidgetSignUpOauthFromWeChat(),
             ],
           ),
         ),

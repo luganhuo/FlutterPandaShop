@@ -6,6 +6,11 @@ import '../../../constants/constant_images.dart';
 import '../../../constants/constant_spacing.dart';
 import '../../../utils/image_in_assets.dart';
 
+enum SignUpType {
+  mobile,
+  email,
+}
+
 class WidgetSignUpEmailEntry extends StatefulWidget {
   _WidgetSignUpEmailEntryState createState() => _WidgetSignUpEmailEntryState();
 }

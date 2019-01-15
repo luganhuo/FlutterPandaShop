@@ -23,15 +23,19 @@ dependencies:
   crypto: ^2.0.6            # crypto secure
   fluro: ^1.4.0             # route
   url_launcher: ^4.0.3      # external url launch, phone, sms, html, e-mail
-  # flutter_pdf_renderer: any  # pdf render object for pdf assets.
-  ff_pdf_view:
-    git:
-      url: git@github.com:derrick-zhu/FlutterPDFImage.git
-      ref: develop
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+
+
+  # sub-modules for farfetch features
+  ff_pdf_view:
+  #    path: ../ff_pdf_view/
+      git:
+        url: git@github.com:derrick-zhu/FlutterPDFImage.git
+        ref: develop
+
 
 dev_dependencies:
   flutter_test:
