@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-
-import '../../../component/button/gesture_widget.dart';
-import '../../../component/textfield/input_field.dart';
-import '../../../constants/constant_images.dart';
-import '../../../constants/constant_spacing.dart';
-import '../../../utils/image_in_assets.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
+//import '../../../component/button/gesture_widget.dart';
+//import '../../../component/textfield/input_field.dart';
+//import '../../../constants/constant_images.dart';
+//import '../../../constants/constant_spacing.dart';
+//import '../../../utils/image_in_assets.dart';
 
 enum SignUpType {
   mobile,
   email,
 }
 
-class WidgetSignUpEmailEntry extends StatefulWidget {
-  _WidgetSignUpEmailEntryState createState() => _WidgetSignUpEmailEntryState();
+class WidgetSignUpMethod extends StatefulWidget {
+  _WidgetSignUpMethodState createState() => _WidgetSignUpMethodState();
 }
 
-class _WidgetSignUpEmailEntryState extends State<WidgetSignUpEmailEntry> {
+class _WidgetSignUpMethodState extends State<WidgetSignUpMethod> {
   @override
   Widget build(BuildContext context) {
     return Container(

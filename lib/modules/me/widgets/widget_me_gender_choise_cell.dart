@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_fonts.dart';
-import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
 import '../../../modules/me/components/component_radio_box.dart';
 import '../../../modules/me/components/component_section_header.dart';
 import '../../../modules/models/ModelEnums.dart';
+//import '../../../constants/constant_colors.dart';
+//import '../../../constants/constant_fonts.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetMeGenderChoice extends StatefulWidget {
   final GenderType gender;
@@ -58,8 +59,7 @@ class _WidgetMeGenderChoiceState extends State<WidgetMeGenderChoice> {
               children: <Widget>[
                 Text(
                   Translations.of(context).text("myShopFooter"),
-                  style:
-                      PandaTextStyle.polaris.copyWith(fontSize: 12, color: Colours.dark, fontWeight: FontWeight.w300),
+                  style: PandaTextStyle.polaris.copyWith(fontSize: 12, color: Colours.dark, fontWeight: FontWeight.w300),
                 )
               ],
             ),

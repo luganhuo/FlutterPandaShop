@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../constants/constant_fonts.dart';
 import '../../core/route/panda_routable_model.dart';
 import '../../features/routes/panda_feature_helper.dart';
+//import '../../constants/constant_fonts.dart';
 
 class WindowWebView extends StatefulWidget implements PandaFeatureProviderProtocol {
   final String title;

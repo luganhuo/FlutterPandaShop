@@ -1,4 +1,5 @@
-import '../constants/constant_endpoints.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
+
 import 'obfuscator.dart';
 
 /* 目前只是用product版本的endpoints, sorry.*/

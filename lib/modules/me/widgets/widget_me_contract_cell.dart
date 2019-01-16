@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_fonts.dart';
-import '../../../constants/constant_images.dart';
-import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
 import '../../../modules/me/components/component_section_header.dart';
-import '../../../utils/image_in_assets.dart';
+//import '../../../constants/constant_colors.dart';
+//import '../../../constants/constant_fonts.dart';
+//import '../../../constants/constant_images.dart';
+//import '../../../constants/constant_spacing.dart';
+
+//import '../../../utils/image_in_assets.dart';
 
 class WidgetMyContractUsCell extends StatelessWidget {
   static double kContainerHeight = 84.0;

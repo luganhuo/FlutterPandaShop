@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/constant_fonts.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
+//import '../../../constants/constant_fonts.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;

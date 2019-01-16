@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
 
 import 'brands/window_brands.dart';
 import 'category/window_category.dart';
 import 'home/window_home.dart';
 import 'me/window_me.dart';
-import 'protocols/protocol_main_page.dart';
 import 'wishlist/window_wishlist.dart';
+//import 'protocols/protocol_main_page.dart';
 
 class RootWindow extends StatefulWidget {
   @override

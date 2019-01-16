@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../component/tab_bar_icon_item.dart';
-import '../../constants/constant_images.dart';
 import '../../core/multi_lang/translations.dart';
-import '../../modules/protocols/protocol_main_page.dart';
-import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../utils/image_in_assets.dart';
+//import '../../component/tab_bar_icon_item.dart';
+//import '../../constants/constant_images.dart';
+
+//import '../../modules/protocols/protocol_main_page.dart';
+//import '../../modules/protocols/protocol_tab_bar_item.dart';
+//import '../../utils/image_in_assets.dart';
 
 class BrandsWindow extends StatefulWidget implements MainPageProtocol {
   _BrandsWindowState createState() => _BrandsWindowState();

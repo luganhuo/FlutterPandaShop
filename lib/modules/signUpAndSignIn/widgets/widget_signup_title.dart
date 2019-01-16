@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../constants/constant_fonts.dart';
-import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
+//import '../../../constants/constant_fonts.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetSignupTitle extends StatelessWidget {
   @override

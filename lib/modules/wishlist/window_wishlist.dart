@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../component/tab_bar_icon_item.dart';
-import '../../component/textfield/input_field.dart';
-import '../../component/textfield/input_field_interface.dart';
-import '../../component/textfield/input_field_sms.dart';
-import '../../constants/constant_colors.dart';
-import '../../constants/constant_fonts.dart';
-import '../../constants/constant_images.dart';
-import '../../constants/constant_spacing.dart';
 import '../../core/multi_lang/translations.dart';
-import '../../modules/protocols/protocol_main_page.dart';
-import '../../modules/protocols/protocol_tab_bar_item.dart';
-import '../../utils/image_in_assets.dart';
+//import '../../component/tab_bar_icon_item.dart';
+//import '../../component/textfield/input_field.dart';
+//import '../../component/textfield/input_field_interface.dart';
+//import '../../component/textfield/input_field_sms.dart';
+//import '../../constants/constant_colors.dart';
+//import '../../constants/constant_fonts.dart';
+//import '../../constants/constant_images.dart';
+//import '../../constants/constant_spacing.dart';
+
+//import '../../modules/protocols/protocol_main_page.dart';
+//import '../../modules/protocols/protocol_tab_bar_item.dart';
+//import '../../utils/image_in_assets.dart';
 
 class WishListWindow extends StatefulWidget implements MainPageProtocol {
   _WishListWindowState createState() => _WishListWindowState();

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../component/button/button.dart';
-import '../../constants/constant_colors.dart';
-import '../../constants/constant_fonts.dart';
-import '../../constants/constant_images.dart';
-import '../../constants/constant_spacing.dart';
 import '../../core/multi_lang/translations.dart';
 import '../../core/route/panda_routable_model.dart';
 import '../../features/routes/panda_feature_helper.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_email.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_legal.dart';
 import '../../modules/signUpAndSignIn/widgets/widget_signup_title.dart';
-import '../../utils/image_in_assets.dart';
-import '../../utils/keyboard_utils.dart';
+//import '../../component/button/button.dart';
+//import '../../constants/constant_colors.dart';
+//import '../../constants/constant_fonts.dart';
+//import '../../constants/constant_images.dart';
+//import '../../constants/constant_spacing.dart';
+
+//import '../../utils/image_in_assets.dart';
+//import '../../utils/keyboard_utils.dart';
 
 class WindowSignUp extends StatefulWidget implements PandaFeatureProviderProtocol {
   static List<PandaRoutableModel> allFeatureRoutes() {
@@ -57,7 +60,7 @@ class _WindowSignUpState extends State<WindowSignUp> {
           child: Column(
             children: <Widget>[
               WidgetSignupTitle(),
-              WidgetSignUpEmailEntry(),
+              WidgetSignUpMethod(),
               WidgetSignUpLegalWarning(),
               Container(
                 padding: EdgeInsets.fromLTRB(Spacing.m, Spacing.xs, Spacing.m, 0),

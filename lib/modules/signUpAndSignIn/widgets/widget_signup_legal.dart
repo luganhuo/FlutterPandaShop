@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../constants/constant_spacing.dart';
 import '../../../modules/me/components/component_check_box.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetSignUpLegalWarning extends StatefulWidget {
   _WidgetSignUpLegalWarningState createState() => _WidgetSignUpLegalWarningState();

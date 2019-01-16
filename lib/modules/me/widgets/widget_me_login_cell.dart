@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_appkit/flutter_panda_appkit.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../component/button/button_factory.dart';
-import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_define.dart';
-import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
+//import '../../../component/button/button_factory.dart';
+//import '../../../constants/constant_colors.dart';
+//import '../../../constants/constant_define.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetMeLoginCell extends StatelessWidget {
   final VoidCallback onRegister;
@@ -41,16 +43,14 @@ class WidgetMeLoginCell extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    child: ButtonFactory.secondaryButton(
-                        context, Translations.of(context).text("registerViewRegisterButton"), this.onRegister),
+                    child: ButtonFactory.secondaryButton(context, Translations.of(context).text("registerViewRegisterButton"), this.onRegister),
                     height: Defines.ButtonHeightNormal,
                   ),
                 ),
                 SizedBox(width: Spacing.s),
                 Expanded(
                   child: Container(
-                    child: ButtonFactory.primaryButton(
-                        context, Translations.of(context).text("loginViewSignInButton"), this.onSignIn),
+                    child: ButtonFactory.primaryButton(context, Translations.of(context).text("loginViewSignInButton"), this.onSignIn),
                     height: Defines.ButtonHeightNormal,
                   ),
                 ),

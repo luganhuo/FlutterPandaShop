@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_spacing.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
+//import '../../../constants/constant_colors.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetSignUpSeparatorLine extends StatelessWidget {
   @override

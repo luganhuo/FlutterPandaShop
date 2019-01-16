@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_panda_foundation/flutter_panda_foundation.dart';
 
-import '../../../constants/constant_colors.dart';
-import '../../../constants/constant_spacing.dart';
 import '../../../core/multi_lang/translations.dart';
 import '../../../modules/me/components/component_data_selector.dart';
 import '../../../modules/me/components/component_section_header.dart';
 import '../../webView/panda_features_webview.dart';
+//import '../../../constants/constant_colors.dart';
+//import '../../../constants/constant_spacing.dart';
 
 class WidgetMySupportCell extends StatelessWidget {
   static String get _farfetchEndpoints => "https://www.farfetch.cn";
@@ -63,9 +64,7 @@ class WidgetMySupportCell extends StatelessWidget {
                   title: Translations.of(context).text("secondaryNavigationFaqsGuides"),
                 );
               }),
-          DataSelector(
-              title: Translations.of(context).text("farfetchPartners"),
-              onPressed: () => print('farfetchPartners pressed')),
+          DataSelector(title: Translations.of(context).text("farfetchPartners"), onPressed: () => print('farfetchPartners pressed')),
         ],
       ),
     );
